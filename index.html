@@ -1767,19 +1767,19 @@ function addExperienceToFolio(reservationId,experienceId){
 ========================================================= */
 
 const STORAGE = {
-    properties:"signature_customer_wild-hasthi_mu0bd0lj_properties",
-    reservations:"signature_customer_wild-hasthi_mu0bd0lj_reservations",
-    folios:"signature_customer_wild-hasthi_mu0bd0lj_folios",
-    payments:"signature_customer_wild-hasthi_mu0bd0lj_payments",
-    sales:"signature_customer_wild-hasthi_mu0bd0lj_sales",
-    guests:"signature_customer_wild-hasthi_mu0bd0lj_guests",
-    settings:"signature_customer_wild-hasthi_mu0bd0lj_settings",
-    users:"signature_customer_wild-hasthi_mu0bd0lj_users",
-    session:"signature_customer_wild-hasthi_mu0bd0lj_current_user",
-        audit:"signature_customer_wild-hasthi_mu0bd0lj_audit",
-    cashierClosings:"signature_customer_wild-hasthi_mu0bd0lj_cashier_closings",
-    pmAccounts:"signature_customer_wild-hasthi_mu0bd0lj_pm_accounts",
-    pmTransactions:"signature_customer_wild-hasthi_mu0bd0lj_pm_transactions"
+    properties:"signature_demo_pms_v167_properties",
+    reservations:"signature_demo_pms_v167_reservations",
+    folios:"signature_demo_pms_v167_folios",
+    payments:"signature_demo_pms_v167_payments",
+    sales:"signature_demo_pms_v167_sales",
+    guests:"signature_demo_pms_v167_guests",
+    settings:"signature_demo_pms_v167_settings",
+    users:"signature_demo_pms_v167_users",
+    session:"signature_demo_pms_v167_current_user",
+        audit:"signature_demo_pms_v167_audit",
+    cashierClosings:"signature_demo_pms_v167_cashier_closings",
+    pmAccounts:"signature_demo_pms_v167_pm_accounts",
+    pmTransactions:"signature_demo_pms_v167_pm_transactions"
 };
 
 const DEFAULT_POS_MENU = [
@@ -1839,12 +1839,11 @@ function defaultProperty(id,name,location,roomCount,roomRate,options={}){
    HOTEL EDITION: no customer/property is preloaded.
    The Administrator configures the licensed property during setup.
 */
-const DEFAULT_PROPERTIES = [{"id":"wild-hasthi-mu0bd0lg","property":"Wild Hasthi","location":"Thanamalwila, Sri Lanka","currency":"$","roomRate":330,"villaLocal":0,"villaForeign":0,"openingBalance":0,"maxGuests":4,"foodCostMarkup":20,"teaCoffeeIncluded":true,"bookingTypes":["room"],"rateMatrix":null,"experiences":[],"rooms":[{"id":1,"name":"Room 01","type":"Guest Room","rate":330,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""}],"posMenu":[{"id":"lunch","name":"Lunch","category":"Meals","price":18,"active":true},{"id":"dinner","name":"Dinner","category":"Meals","price":22,"active":true},{"id":"tea","name":"Tea / Coffee","category":"Beverages","price":4,"active":true},{"id":"soft","name":"Soft Drink","category":"Beverages","price":3,"active":true},{"id":"juice","name":"Fresh Juice","category":"Beverages","price":5,"active":true},{"id":"water","name":"Water","category":"Beverages","price":2,"active":true},{"id":"laundry","name":"Laundry","category":"Services","price":10,"active":true},{"id":"airport","name":"Airport Transfer","category":"Transfers","price":35,"active":true}],"licenseHolder":"Wild Hasthi","licenseKey":"PENDING","supportContact":"Signature Hospitality Sri Lanka","installationId":"INSTALL-1789334163268","createdAt":"14/09/2026, 00:16:03"}];
-const MASTER_PROPERTY_NEUTRAL=true;
+const DEFAULT_PROPERTIES = [{"id":"signature-demo-hotel","property":"Signature Demo Hotel","location":"Sri Lanka","currency":"$","baseCurrency":"LKR","guestCurrency":"USD","postingRate":320,"settlementRate":320,"cashRate":320,"serviceChargeRate":10,"taxRate":5,"roomRate":120,"villaLocal":0,"villaForeign":0,"openingBalance":0,"maxGuests":2,"foodCostMarkup":20,"teaCoffeeIncluded":true,"bookingTypes":["room"],"rateMatrix":null,"experiences":[],"rooms":[{"id":1,"name":"101","type":"Deluxe Room","rate":120,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":2,"name":"102","type":"Deluxe Room","rate":120,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":3,"name":"103","type":"Deluxe Room","rate":120,"active":true,"housekeepingStatus":"inspected","maintenanceNote":"","oosReason":""},{"id":4,"name":"104","type":"Deluxe Room","rate":120,"active":true,"housekeepingStatus":"dirty","maintenanceNote":"","oosReason":""},{"id":5,"name":"105","type":"Superior Room","rate":135,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":6,"name":"106","type":"Superior Room","rate":135,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":7,"name":"107","type":"Superior Room","rate":135,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":8,"name":"108","type":"Superior Room","rate":135,"active":true,"housekeepingStatus":"oos","maintenanceNote":"Maintenance demo","oosReason":"Air-conditioning"},{"id":9,"name":"109","type":"Family Room","rate":160,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":10,"name":"110","type":"Family Room","rate":160,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":11,"name":"111","type":"Family Room","rate":160,"active":true,"housekeepingStatus":"inspected","maintenanceNote":"","oosReason":""},{"id":12,"name":"112","type":"Family Room","rate":160,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""}],"posMenu":[{"id":"lunch","name":"Lunch","category":"Meals","price":18,"active":true},{"id":"dinner","name":"Dinner","category":"Meals","price":22,"active":true},{"id":"breakfast","name":"Breakfast","category":"Meals","price":12,"active":true},{"id":"tea","name":"Tea / Coffee","category":"Beverages","price":4,"active":true},{"id":"juice","name":"Fresh Juice","category":"Beverages","price":5,"active":true},{"id":"water","name":"Water","category":"Beverages","price":2,"active":true},{"id":"laundry","name":"Laundry","category":"Services","price":10,"active":true},{"id":"transfer","name":"Airport Transfer","category":"Transfers","price":35,"active":true}],"licenseHolder":"Signature Hospitality Sri Lanka","licenseKey":"DEMO","supportContact":"Signature Hospitality Sri Lanka","installationId":"SIGNATURE-DEMO-001","createdAt":"16/09/2026"}];const MASTER_PROPERTY_NEUTRAL=true;
 
 const APP_NAME="Signature PMS";
 const APP_EDITION="Hotel Edition";
-const APP_VERSION="1.6.4";
+const APP_VERSION="1.6.7-Demo";
 
 let properties=[];
 let currentPropertyId=null;
@@ -2028,6 +2027,44 @@ function applyPropertyMigrations(){
 }
 
 migrateLegacyData();
+
+/* =========================================================
+   DEMO EDITION SEED DATA
+   Clean customer demo only — no live property data.
+========================================================= */
+const DEMO_BUILD=true;
+if(DEMO_BUILD && !localStorage.getItem(STORAGE.properties)){
+    const demoProperty=JSON.parse(JSON.stringify(DEFAULT_PROPERTIES[0]));
+    const demoGuests=[
+      {id:"g_demo_001",name:"Daniel Perera",phone:"+94 77 123 4567",email:"daniel@example.com",guestType:"FIT",createdAt:"2026-09-15 09:15"},
+      {id:"g_demo_002",name:"Sarah Miller",phone:"+44 7700 900123",email:"sarah@example.com",guestType:"FIT",createdAt:"2026-09-14 14:20"},
+      {id:"g_demo_003",name:"Kamal Fernando",phone:"+94 71 555 8899",email:"kamal@example.com",guestType:"Corporate",createdAt:"2026-09-13 11:05"}
+    ];
+    const today=new Date();
+    const ds=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
+    const demoReservations=[
+      {id:"r_demo_001",bookingNo:"DEMO-0001",guestId:"g_demo_001",guestName:"Daniel Perera",phone:"+94 77 123 4567",email:"daniel@example.com",guestType:"FIT",bookingType:"room",roomId:1,checkIn:ds(-1),checkOut:ds(2),nights:3,rate:120,total:360,adults:2,children:0,childrenAges:[],mealPlan:"BB",breakfastIncluded:true,deposit:100,currency:"USD",baseCurrency:"LKR",postingRateAtBooking:320,status:"Checked-In",notes:"Demo in-house guest",createdAt:"2026-09-15 09:30"},
+      {id:"r_demo_002",bookingNo:"DEMO-0002",guestId:"g_demo_002",guestName:"Sarah Miller",phone:"+44 7700 900123",email:"sarah@example.com",guestType:"FIT",bookingType:"room",roomId:5,checkIn:ds(1),checkOut:ds(4),nights:3,rate:135,total:405,adults:2,children:0,childrenAges:[],mealPlan:"HB",breakfastIncluded:true,deposit:150,currency:"USD",baseCurrency:"LKR",postingRateAtBooking:320,status:"Reserved",notes:"Demo future arrival",createdAt:"2026-09-16 08:10"},
+      {id:"r_demo_003",bookingNo:"DEMO-0003",guestId:"g_demo_003",guestName:"Kamal Fernando",phone:"+94 71 555 8899",email:"kamal@example.com",guestType:"Corporate",bookingType:"room",roomId:9,checkIn:ds(0),checkOut:ds(1),nights:1,rate:160,total:160,adults:1,children:0,childrenAges:[],mealPlan:"RO",breakfastIncluded:true,deposit:0,currency:"USD",baseCurrency:"LKR",postingRateAtBooking:320,status:"Reserved",notes:"Corporate demo booking",createdAt:"2026-09-16 08:30"}
+    ];
+    const demoFolios=demoReservations.map((r,i)=>({id:"f_demo_00"+(i+1),reservationId:r.id,accommodation:r.total,restaurant:i===0?36:0,extras:i===0?10:0,discounts:0,taxes:0,serviceCharges:0,total:r.total+(i===0?46:0),createdAt:r.createdAt}));
+    const demoPayments=[
+      {id:"p_demo_001",reservationId:"r_demo_001",date:"2026-09-15 10:00",reference:"DEP-DEMO-0001",type:"Deposit",method:"Credit Card",amount:100,status:"Received",receivedBy:"demo",cardType:"Visa",last4:"4242",notes:"Demo deposit"},
+      {id:"p_demo_002",reservationId:"r_demo_002",date:"2026-09-16 08:15",reference:"DEP-DEMO-0002",type:"Deposit",method:"Bank Transfer",amount:150,status:"Received",receivedBy:"demo",cardType:"",last4:"",notes:"Demo deposit"}
+    ];
+    const demoSales=[{id:"s_demo_001",date:"2026-09-15 13:00",reservationId:"r_demo_001",item:"Lunch",category:"Meals",qty:2,price:18,total:36,paymentMethod:"Room Charge",status:"Posted",createdBy:"demo"}];
+    const demoUser={id:"demo-admin-001",username:"demo",passwordHash:"d3ad9315b7be5dd53b31a273b3b3aba5defe700808305aa16a3062b76658a791",role:"Admin",active:true,propertyId:demoProperty.id,permissions:{pages:PERMISSION_PAGES.map(x=>x[0]),reports:REPORT_PERMISSION_KEYS.slice()},createdAt:"2026-09-16"};
+    localStorage.setItem(STORAGE.properties,JSON.stringify([demoProperty]));
+    localStorage.setItem(STORAGE.guests,JSON.stringify(demoGuests));
+    localStorage.setItem(STORAGE.reservations,JSON.stringify(demoReservations));
+    localStorage.setItem(STORAGE.folios,JSON.stringify(demoFolios));
+    localStorage.setItem(STORAGE.payments,JSON.stringify(demoPayments));
+    localStorage.setItem(STORAGE.sales,JSON.stringify(demoSales));
+    localStorage.setItem(STORAGE.users,JSON.stringify([demoUser]));
+    localStorage.setItem(STORAGE.audit,JSON.stringify([]));
+    localStorage.setItem(STORAGE.pmAccounts,JSON.stringify([]));
+    localStorage.setItem(STORAGE.pmTransactions,JSON.stringify([]));
+}
 properties=readArray(STORAGE.properties).map(ensurePropertyShape);
 applyPropertyMigrations();
 users=readArray(STORAGE.users);
@@ -8288,7 +8325,7 @@ function closeCashierDay(){
     const msg=document.getElementById('cashierCloseMessage');if(msg)msg.textContent='Cashier day closed by '+(currentUser?.username||'Cashier')+' at '+record.closedAt+'. Variance: '+money(result.variance);
     alert('Cashier day closed successfully. Variance: '+money(result.variance));
 }
-function printCashierSummary(){const today=localDateString(),list=payments.filter(p=>paymentDateOnly(p)===today),sum=paymentSummary(list),w=window.open('','_blank');if(!w)return;const closing=readArray(STORAGE.cashierClosings).find(x=>x.propertyId===currentPropertyId&&x.date===today);w.document.write(`<html><head><title>Cashier Summary ${today}</title><style>body{font-family:Arial;padding:30px}.line{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #ddd}</style></head><body><h2>Signature PMS — Daily Cashier Summary</h2><div>${today}</div><div class="line"><span>Gross Received</span><strong>${money(sum.gross)}</strong></div><div class="line"><span>Refunds</span><strong>${money(sum.refunds)}</strong></div><div class="line"><span>Net Received</span><strong>${money(sum.net)}</strong></div><div class="line"><span>Cash Received</span><strong>${money(sum.cash)}</strong></div><div class="line"><span>Cash Refunds</span><strong>${money(sum.cashRefunds)}</strong></div><div class="line"><span>Net Cash</span><strong>${money(sum.cash-sum.cashRefunds)}</strong></div><div class="line"><span>Pending Payments</span><strong>${money(sum.pending)}</strong></div>${closing?`<div class="line"><span>Opening Float</span><strong>${money(closing.openingFloat)}</strong></div><div class="line"><span>Expected Cash</span><strong>${money(closing.expectedCash)}</strong></div><div class="line"><span>Actual Cash</span><strong>${money(closing.actualCash)}</strong></div><div class="line"><span>Variance</span><strong>${money(closing.variance)}</strong></div>`:''}</body></html>`);w.document.close();w.focus();w.print();}
+function printCashierSummary(){const today=localDateString(),list=payments.filter(p=>paymentDateOnly(p)===today),sum=paymentSummary(list),w=window.open('','_blank');if(!w)return;const closing=readArray(STORAGE.cashierClosings).find(x=>x.propertyId===currentPropertyId&&x.date===today);w.document.write(`<html><head><title>Cashier Summary ${today}</title><style>body{font-family:Arial;padding:30px}.line{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #ddd}</style></head><body data-demo-build="true"><h2>Signature PMS — Daily Cashier Summary</h2><div>${today}</div><div class="line"><span>Gross Received</span><strong>${money(sum.gross)}</strong></div><div class="line"><span>Refunds</span><strong>${money(sum.refunds)}</strong></div><div class="line"><span>Net Received</span><strong>${money(sum.net)}</strong></div><div class="line"><span>Cash Received</span><strong>${money(sum.cash)}</strong></div><div class="line"><span>Cash Refunds</span><strong>${money(sum.cashRefunds)}</strong></div><div class="line"><span>Net Cash</span><strong>${money(sum.cash-sum.cashRefunds)}</strong></div><div class="line"><span>Pending Payments</span><strong>${money(sum.pending)}</strong></div>${closing?`<div class="line"><span>Opening Float</span><strong>${money(closing.openingFloat)}</strong></div><div class="line"><span>Expected Cash</span><strong>${money(closing.expectedCash)}</strong></div><div class="line"><span>Actual Cash</span><strong>${money(closing.actualCash)}</strong></div><div class="line"><span>Variance</span><strong>${money(closing.variance)}</strong></div>`:''}</body></html>`);w.document.close();w.focus();w.print();}
 
 
 /* =========================================================
@@ -9593,7 +9630,7 @@ function generateCustomerEdition(){
     // Customer editions must open on Dashboard and must never expose the Master generator.
     html=html.replace('<body>', '<body data-customer-build="true">');
     const storagePrefix="signature_customer_"+slug+"_"+Date.now().toString(36);
-    html=html.replace(/signature_customer_wild-hasthi_mu0bd0lj_/g,storagePrefix+"_");
+    html=html.replace(/signature_demo_pms_v167_/g,storagePrefix+"_");
     html=html.replace('<section id="customerGeneratorSection"','<section id="customerGeneratorSection"');
     const safeName=propertyName.replace(/[^a-z0-9]+/gi,"_").replace(/^_+|_+$/g,"");
     const fileName=`Signature_PMS_${safeName}_v${APP_VERSION}.html`;
