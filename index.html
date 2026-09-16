@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width,initial-scale=1.0" name="viewport">
 <meta content="#17251d" name="theme-color">
-<title>Signature PMS — Hotel Edition v1.6.3</title>
+<title>Signature PMS — Hotel Edition v1.6.5</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#17251d}
@@ -182,10 +182,10 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <div class="auth-brand">
 <h1>Signature</h1>
 <p>PMS &amp; POS</p>
-<small style="display:block;margin-top:6px;opacity:.75">Hotel Edition · v1.6.0</small>
+<small style="display:block;margin-top:6px;opacity:.75">Hotel Edition · v1.6.5</small>
 </div>
 <!-- LOGIN -->
-<div id="loginView" style="display: block;">
+<div id="loginView" style="display: none;">
 <h2 class="auth-title">Staff Login</h2>
 <p class="auth-subtitle">Secure access to your hotel management and point-of-sale system.</p>
 <div class="form-group" style="margin-bottom:13px">
@@ -199,7 +199,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <button class="btn btn-secondary btn-small" onclick="toggleLoginPassword()" type="button">Show</button>
 </div>
 </div>
-<div class="auth-error" id="loginError" style="display: none;"></div>
+<div class="auth-error" id="loginError" style="display: block;">Invalid username or password.</div>
 <div class="auth-actions">
 <button class="btn btn-primary" onclick="login()">Login</button>
 </div>
@@ -213,7 +213,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </div>
 </div>
 <!-- FIRST ADMIN -->
-<div id="setupView" style="display:none">
+<div id="setupView" style="display: block;">
 <h2 class="auth-title">Create First Admin</h2>
 <p class="auth-subtitle">
                 No users exist yet. Create the first Administrator account to start using Signature PMS.
@@ -236,7 +236,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <label>Confirm Password *</label>
 <input autocomplete="new-password" id="setupConfirmPassword" onkeydown="if(event.key==='Enter')createFirstAdmin()" type="password">
 </div>
-<div class="auth-error" id="setupError"></div>
+<div class="auth-error" id="setupError" style="display: none;"></div>
 <div class="auth-actions">
 <button class="btn btn-primary" onclick="createFirstAdmin()">
                     Create Admin &amp; Continue
@@ -262,6 +262,9 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <button class="nav-btn" data-page="experiences" onclick="showPage('experiences',this)">Experiences</button>
 <button class="nav-btn" data-page="payments" onclick="showPage('payments',this)">Payments</button>
 <button class="nav-btn" data-page="reports" onclick="showPage('reports',this)">Reports</button>
+<button class="nav-btn" data-page="accounting" onclick="showPage('accounting',this)">Accounting</button>
+<button class="nav-btn" data-page="purchasing" onclick="showPage('purchasing',this)">Purchasing</button>
+
 <button class="nav-btn active" data-page="settings" onclick="showPage('settings',this)">Settings</button>
 <button class="nav-btn admin-only-nav" data-page="users" id="usersNavBtn" onclick="showPage('users',this)">Users Management</button>
 </aside>
@@ -272,7 +275,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <select class="no-print" id="propertySwitcher" onchange="switchProperty(this.value)" style="width:auto;min-width:180px"><option value="622e4dc7-19d2-497f-bab3-4339a9f938d2">Shani Manor</option></select>
 <div class="current-user" id="currentUserDisplay"><strong>admin</strong>
          · Admin</div>
-<div class="date-now" id="currentDate">Sunday, 13 September 2026</div>
+<div class="date-now" id="currentDate">Monday, 14 September 2026</div>
 <button class="btn btn-secondary btn-small" onclick="logout()">
             Logout
         </button>
@@ -339,7 +342,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <h3>7-Day Overview</h3>
 <span style="font-size:12px;color:#6b7280">Upcoming arrivals &amp; departures</span>
 </div>
-<div class="overview-list" id="dashboard7Day"><div class="overview-row"><strong>Today</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>14/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>15/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>16/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>17/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>18/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>19/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div></div>
+<div class="overview-list" id="dashboard7Day"><div class="overview-row"><strong>Today</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>15/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>16/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>17/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>18/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>19/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div><div class="overview-row"><strong>20/09/2026</strong><span>0 arrivals</span><span>0 dep.</span><span>0 in-house</span></div></div>
 </div>
 <div class="section">
 <div class="section-header">
@@ -396,7 +399,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </div>
 </div>
 <div class="summary-grid" style="margin-bottom:15px">
-<div class="summary-box"><div class="summary-label">Total Guests</div><div class="summary-value" id="guestTotal">1</div></div>
+<div class="summary-box"><div class="summary-label">Total Guests</div><div class="summary-value" id="guestTotal">0</div></div>
 <div class="summary-box"><div class="summary-label">Repeat Guests</div><div class="summary-value" id="guestRepeat">0</div></div>
 <div class="summary-box"><div class="summary-label">VIP Guests</div><div class="summary-value" id="guestVip">0</div></div>
 <div class="summary-box"><div class="summary-label">Active Stays</div><div class="summary-value" id="guestActive">0</div></div>
@@ -416,16 +419,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <th>Guest</th><th>Phone</th><th>Email</th><th>Nationality</th>
 <th>Stays</th><th>Spend</th><th>Status</th><th>Action</th>
 </tr></thead>
-<tbody id="guestTable"><tr>
-            <td><strong>test</strong></td>
-            <td>+94770000000</td>
-            <td>testguest@example.com</td>
-            <td>Sri Lankan</td>
-            <td>0</td>
-            <td>$0.00</td>
-            <td><span class="badge">Guest</span></td>
-            <td><button class="btn btn-small btn-secondary" onclick="openGuestModal('3db535ee-c16e-412e-b6d9-f0f48fd5a8c9')">View / Edit</button></td>
-        </tr></tbody>
+<tbody id="guestTable"><tr><td colspan="8" class="empty">No guest profiles found.</td></tr></tbody>
 </table>
 </div>
 </div>
@@ -773,183 +767,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </select>
 </div>
 <div id="posMenuRule"><div style="background:#f8faf9;border:1px solid #d1d5db;border-radius:8px;padding:9px;margin-bottom:10px;font-size:12px;color:#475569"><strong>Restaurant pricing:</strong> Food cost + 20% preparation &amp; service. Tea / Coffee included.</div></div>
-<div class="pos-menu" id="posMenu">
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Meals
-                </div>
-
-                <h4>
-                    Lunch
-                </h4>
-
-                <div class="pos-price">
-                    $18.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('lunch')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Meals
-                </div>
-
-                <h4>
-                    Dinner
-                </h4>
-
-                <div class="pos-price">
-                    $22.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('dinner')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Beverages
-                </div>
-
-                <h4>
-                    Tea / Coffee
-                </h4>
-
-                <div class="pos-price">
-                    $4.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('tea')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Beverages
-                </div>
-
-                <h4>
-                    Soft Drink
-                </h4>
-
-                <div class="pos-price">
-                    $3.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('soft')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Beverages
-                </div>
-
-                <h4>
-                    Fresh Juice
-                </h4>
-
-                <div class="pos-price">
-                    $5.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('juice')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Beverages
-                </div>
-
-                <h4>
-                    Water
-                </h4>
-
-                <div class="pos-price">
-                    $2.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('water')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Services
-                </div>
-
-                <h4>
-                    Laundry
-                </h4>
-
-                <div class="pos-price">
-                    $10.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('laundry')">
-                    Add
-                </button>
-
-            </div>
-
-        
-
-            <div class="pos-item">
-
-                <div style="font-size:11px;color:#6b7280;margin-bottom:4px">
-                    Transfers
-                </div>
-
-                <h4>
-                    Airport Transfer
-                </h4>
-
-                <div class="pos-price">
-                    $35.00
-                </div>
-
-                <button class="btn btn-primary btn-small" onclick="addPOSItem('airport')">
-                    Add
-                </button>
-
-            </div>
-
-        </div>
+<div class="pos-menu" id="posMenu"><div class="empty">No active restaurant menu items for this property.</div></div>
 </div>
 <div class="section">
 <div class="section-header">
@@ -1010,8 +828,8 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <div class="form-group"><label>Opening Float</label><input id="cashierOpeningFloat" min="0" step="0.01" type="number" value="0"></div>
 <div class="form-group"><label>Actual Cash Counted</label><input id="cashierActualCash" min="0" placeholder="Enter counted cash" step="0.01" type="number"></div>
 </div>
-<div class="report-line"><span>Expected Cash</span><strong id="cashierExpectedCash">$75.00</strong></div>
-<div class="report-line"><span>Cash Variance</span><strong id="cashierVariance">Enter actual cash</strong></div>
+<div class="report-line"><span>Expected Cash</span><strong id="cashierExpectedCash">$0.00</strong></div>
+<div class="report-line"><span>Cash Variance</span><strong id="cashierVariance">$0.00</strong></div>
 <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
 <button class="btn btn-secondary btn-small" onclick="calculateCashierVariance()">Calculate Variance</button>
 <button class="btn btn-success btn-small" onclick="closeCashierDay()">Close Cashier Day</button>
@@ -1035,7 +853,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </div>
 </div>
 </div>
-<div class="section no-print" style="margin-bottom:18px"><div class="section-header"><div><h3>Printable Hotel Reports</h3><div style="font-size:12px;color:#6b7280">Select a report and print a clean operational or financial report for the selected date.</div></div><div class="toolbar"><select id="printReportType" onchange="renderPrintableReport()" style="min-width:240px"><option value="arrivals">Arrival List</option><option value="inhouse">Guest In-House List</option><option value="activity">Activity List</option><option value="departures">Departure List</option><option value="oos">Out of Order Rooms</option><option value="reservations">Reservations List</option><option value="nightaudit">Night Audit</option><option value="dailycash">Daily Cash</option><option value="dailychange">Daily Cash Change</option><option value="cashexpenses">Cash Expenses</option><option value="cashtransactions">Cash Transactions</option><option value="creditcard">Credit Card Payments</option><option value="banktransfer">Bank Transfers</option><option value="advance">Advance Payments</option></select><button class="btn btn-primary" onclick="printSelectedReport()">Print Selected Report</button></div></div></div><div class="report-section" id="printableReport"><div id="printableReportContent"><div style="text-align:center;margin-bottom:18px"><h2 style="margin:0">Shani Manor</h2><h3 style="margin:6px 0">Arrival List</h3><div>Date: 13/09/2026 · Generated: 13/09/2026, 14:32:14</div></div><div class="table-wrap"><table><thead><tr><th>Booking</th><th>Guest</th><th>Room</th><th>Check-In</th><th>Check-Out</th><th>Meal Plan</th><th>Adults</th><th>Children</th><th>Status</th></tr></thead><tbody><tr><td>622E4DC7-19D2-497F-BAB3-4339A9F938D2-2026-0001</td><td>test</td><td>Room 01</td><td>13/09/2026</td><td>14/09/2026</td><td>BB</td><td>2</td><td>0</td><td><span class="badge badge-blue">Checked-In</span></td></tr></tbody></table></div><div style="margin-top:30px;display:flex;justify-content:space-between"><span>Prepared by: admin</span><span>Signature: ____________________</span></div></div></div>
+<div class="section no-print" style="margin-bottom:18px"><div class="section-header"><div><h3>Printable Hotel Reports</h3><div style="font-size:12px;color:#6b7280">Select a report and print a clean operational or financial report for the selected date.</div></div><div class="toolbar"><select id="printReportType" onchange="renderPrintableReport()" style="min-width:240px"><option value="arrivals">Arrival List</option><option value="inhouse">Guest In-House List</option><option value="activity">Activity List</option><option value="departures">Departure List</option><option value="oos">Out of Order Rooms</option><option value="reservations">Reservations List</option><option value="nightaudit">Night Audit</option><option value="dailycash">Daily Cash</option><option value="dailychange">Daily Cash Change</option><option value="cashexpenses">Cash Expenses</option><option value="cashtransactions">Cash Transactions</option><option value="creditcard">Credit Card Payments</option><option value="banktransfer">Bank Transfers</option><option value="advance">Advance Payments</option></select><button class="btn btn-primary" onclick="printSelectedReport()">Print Selected Report</button></div></div></div><div class="report-section" id="printableReport"><div id="printableReportContent"></div></div>
 <div class="report-grid">
 <div class="card">
 <div class="card-title">Accommodation Revenue</div>
@@ -1128,8 +946,107 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </div>
 <button class="btn btn-primary" onclick="openExperienceModal()">+ Add Experience</button>
 </div>
-<div id="experiencesList"><div class="table-wrap"><table><thead><tr><th>Experience</th><th>Category</th><th>HB</th><th>AI</th><th>Price</th><th>Notes</th><th>Actions</th></tr></thead><tbody><tr><td><strong>fishing</strong></td><td></td><td>Chargeable</td><td>Chargeable</td><td>$50.00</td><td></td><td><div style="display:flex;gap:5px;flex-wrap:wrap"><button class="btn btn-success btn-small" onclick="postExperienceToFolio('exp_1789296736679_180oa')">Post to Folio</button><button class="btn btn-secondary btn-small" onclick="openExperienceModal('exp_1789296736679_180oa')">Edit</button><button class="btn btn-danger btn-small" onclick="deleteExperience('exp_1789296736679_180oa')">Delete</button></div></td></tr></tbody></table></div></div>
+<div id="experiencesList"><div class="empty">No experiences configured for this property.</div></div>
 </section>
+
+<!-- =========================================================
+     PURCHASING
+========================================================= -->
+<section class="page" id="purchasing">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <h3>Purchasing &amp; Supplier Accounts</h3>
+        <div style="font-size:12px;color:#6b7280">Purchase orders, goods received notes, supplier invoices, payables and settlements.</div>
+      </div>
+      <div class="toolbar">
+        <button class="btn btn-primary" onclick="openPurchaseOrderModal()">+ Purchase Order</button>
+        <button class="btn btn-success" onclick="openSupplierPaymentModal()">+ Supplier Payment</button>
+        <button class="btn btn-secondary" onclick="openGRNModal()">+ GRN</button>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="card"><div class="card-title">Open Purchase Orders</div><div class="card-value" id="acctOpenPO">0</div></div>
+      <div class="card"><div class="card-title">GRN Value</div><div class="card-value" id="acctGRNValue">$0.00</div></div>
+      <div class="card"><div class="card-title">Accounts Payable</div><div class="card-value" id="acctAP">$0.00</div></div>
+      <div class="card"><div class="card-title">Supplier Payments</div><div class="card-value" id="acctSupplierPayments">$0.00</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><h3>Purchase Register</h3><div class="toolbar"><input id="purchaseSearch" oninput="renderPurchaseRegister()" placeholder="Search supplier, invoice or reference..."><button class="btn btn-secondary" onclick="renderPurchaseRegister()">Refresh</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Supplier</th><th>Invoice</th><th>Payment</th><th>Amount</th><th>Status</th></tr></thead>
+      <tbody id="purchaseRegisterTable"><tr><td colspan="8" class="empty">No purchase records.</td></tr></tbody>
+    </table></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><h3>Supplier Statements / Accounts Payable</h3><button class="btn btn-secondary" onclick="printAccountingReport('supplier')">Print Supplier Statement</button></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Supplier</th><th>Purchases</th><th>Payments</th><th>Balance Payable</th><th>Action</th></tr></thead>
+      <tbody id="supplierStatementTable"><tr><td colspan="5" class="empty">No supplier accounts.</td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ACCOUNTING
+========================================================= -->
+<section class="page" id="accounting">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <h3>Accounting</h3>
+        <div style="font-size:12px;color:#6b7280">Chart of Accounts, double-entry journal, cash &amp; bank, receivables, payables and financial statements.</div>
+      </div>
+      <div class="toolbar">
+        <button class="btn btn-primary" onclick="openExpenseModal()">+ Expense / Journal</button>
+        <button class="btn btn-secondary" onclick="renderAccounting()">Refresh</button>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="card"><div class="card-title">Total Revenue</div><div class="card-value" id="acctRevenue">$0.00</div></div>
+      <div class="card"><div class="card-title">Total Expenses</div><div class="card-value" id="acctExpenses">$0.00</div></div>
+      <div class="card"><div class="card-title">Net Profit / (Loss)</div><div class="card-value" id="acctNetProfit">$0.00</div></div>
+      <div class="card"><div class="card-title">Supplier Payables</div><div class="card-value" id="acctPayables">$0.00</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h3>Accounting Reports</h3>
+      <div class="toolbar">
+        <input id="acctFromDate" type="date" onchange="renderAccounting()">
+        <input id="acctToDate" type="date" onchange="renderAccounting()">
+        <button class="btn btn-secondary" onclick="accountingDateToday()">Today</button>
+      </div>
+    </div>
+    <div class="report-grid">
+      <button class="btn btn-secondary" onclick="printAccountingReport('daily')">Daily Revenue</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('purchase')">Purchase Register</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('grn')">GRN Register</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('supplier')">Supplier Statements</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('aging')">AP Aging</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('expense')">Expense Register</button>
+      <button class="btn btn-primary" onclick="printAccountingReport('trial')">Trial Balance</button>
+      <button class="btn btn-primary" onclick="printAccountingReport('pl')">Profit &amp; Loss</button>
+      <button class="btn btn-primary" onclick="printAccountingReport('balance')">Balance Sheet</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('cashbank')">Cash &amp; Bank Flow</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('inventory')">Inventory Valuation</button>
+      <button class="btn btn-secondary" onclick="printAccountingReport('ledger')">General Ledger Audit</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><h3>Chart of Accounts</h3><button class="btn btn-secondary" onclick="openExpenseModal()">Post Journal</button></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Code</th><th>Account</th><th>Type</th><th>Debit</th><th>Credit</th><th>Balance</th></tr></thead>
+      <tbody id="chartOfAccountsTable"><tr><td colspan="6" class="empty">No accounts.</td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+
 <section class="page active" id="settings">
 <div class="section" id="customerGeneratorSection" style="border:2px solid #111827;background:#f9fafb">
 <div class="section-header">
@@ -1183,11 +1100,11 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <label>Restaurant Food Cost Markup %</label>
 <input id="settingFoodCostMarkup" min="0" placeholder="20" step="0.01" type="number">
 </div>
-<div class="form-group" id="villaLocalGroup" style="display: none;">
+<div class="form-group" id="villaLocalGroup" style="display: block;">
 <label>Entire Villa — Local Rate / Night</label>
 <input id="settingVillaLocal" type="number">
 </div>
-<div class="form-group" id="villaForeignGroup" style="display: none;">
+<div class="form-group" id="villaForeignGroup" style="display: block;">
 <label>Entire Villa — Foreign Rate / Night</label>
 <input id="settingVillaForeign" type="number">
 </div>
@@ -1233,122 +1150,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 </div>
 <button class="btn btn-primary" onclick="addPOSMenuItem()">+ Add Menu Item</button>
 </div>
-<div id="restaurantMenuEditor">
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                        <tr>
-                            <td><strong>Lunch</strong></td>
-                            <td>Meals</td>
-                            <td><strong>$18.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('lunch')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('lunch')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('lunch')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Dinner</strong></td>
-                            <td>Meals</td>
-                            <td><strong>$22.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('dinner')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('dinner')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('dinner')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Tea / Coffee</strong></td>
-                            <td>Beverages</td>
-                            <td><strong>$4.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('tea')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('tea')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('tea')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Soft Drink</strong></td>
-                            <td>Beverages</td>
-                            <td><strong>$3.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('soft')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('soft')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('soft')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Fresh Juice</strong></td>
-                            <td>Beverages</td>
-                            <td><strong>$5.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('juice')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('juice')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('juice')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Water</strong></td>
-                            <td>Beverages</td>
-                            <td><strong>$2.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('water')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('water')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('water')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Laundry</strong></td>
-                            <td>Services</td>
-                            <td><strong>$10.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('laundry')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('laundry')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('laundry')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td><strong>Airport Transfer</strong></td>
-                            <td>Transfers</td>
-                            <td><strong>$35.00</strong></td>
-                            <td><span class="badge badge-success">Active</span></td>
-                            <td>
-                                <button class="btn btn-secondary btn-small" onclick="editPOSMenuItem('airport')">Edit</button>
-                                <button class="btn btn-warning btn-small" onclick="togglePOSMenuItem('airport')">Deactivate</button>
-                                <button class="btn btn-danger btn-small" onclick="deletePOSMenuItem('airport')">Delete</button>
-                            </td>
-                        </tr>
-                    
-                </tbody>
-            </table>
-        </div>
-        <div style="font-size:12px;color:#6b7280;margin-top:10px">
-            Property: <strong>Shani Manor</strong> · Currency: <strong>$</strong>
-        </div></div>
+<div id="restaurantMenuEditor"><div class="empty">No restaurant menu items configured for this property. Click + Add Menu Item.</div></div>
 </div>
 <div class="section">
 <div class="section-header">
@@ -1483,7 +1285,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <button class="btn btn-secondary" onclick="runDataIntegrityCheck()">Check Data Integrity</button>
 <button class="btn btn-danger" onclick="clearAuditLog()">Clear Audit Log</button>
 </div>
-<div id="auditLogList" style="margin-top:15px"><div class="table-wrap"><table><thead><tr><th>Date / Time</th><th>User</th><th>Property</th><th>Action</th><th>Reference</th><th>Details</th></tr></thead><tbody><tr><td>2026-09-13T11:26:11.852Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_DELETED</td><td>f41af7e7-ffc1-4a02-87d1-3d2e4b69f4d9</td><td>Property deleted</td></tr><tr><td>2026-09-13T10:30:12.320Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_DELETED</td><td>5856c651-0fad-4fa2-9ad1-7911032e6c26</td><td>Property deleted</td></tr><tr><td>2026-09-13T09:16:31.976Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>PAYMENT_CREATED</td><td>PAY-1789290991970</td><td>Payment recorded: 75</td></tr><tr><td>2026-09-13T09:16:12.478Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>CHECK_IN</td><td>622E4DC7-19D2-497F-BAB3-4339A9F938D2-2026-0001</td><td>Guest checked in: test</td></tr><tr><td>2026-09-13T09:03:33.119Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_CREATED</td><td>test</td><td>Property created</td></tr><tr><td>2026-09-13T08:52:35.468Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>DATA_INTEGRITY_CHECK</td><td></td><td>1 issue(s) found</td></tr><tr><td>2026-09-12T16:50:14.761Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>PAYMENT_REFUND</td><td>REF-1789231811926</td><td>Refund recorded: 100</td></tr><tr><td>2026-09-12T16:50:07.542Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>RESERVATION_CANCELLED</td><td>TEST-0001</td><td>Reservation cancelled</td></tr><tr><td>2026-09-12T16:26:05.997Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_UPDATED</td><td>f41af7e7-ffc1-4a02-87d1-3d2e4b69f4d9</td><td>Property details updated</td></tr><tr><td>2026-09-12T15:48:37.194Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>AUDIT_CLEARED</td><td></td><td>Audit log was cleared</td></tr></tbody></table></div></div>
+<div id="auditLogList" style="margin-top:15px"><div class="table-wrap"><table><thead><tr><th>Date / Time</th><th>User</th><th>Property</th><th>Action</th><th>Reference</th><th>Details</th></tr></thead><tbody><tr><td>2026-09-13T20:41:41.469Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>USER_DELETED</td><td>mendis@gmail.com</td><td>Cloud user account deleted</td></tr><tr><td>2026-09-13T11:26:11.852Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_DELETED</td><td>f41af7e7-ffc1-4a02-87d1-3d2e4b69f4d9</td><td>Property deleted</td></tr><tr><td>2026-09-13T10:30:12.320Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_DELETED</td><td>5856c651-0fad-4fa2-9ad1-7911032e6c26</td><td>Property deleted</td></tr><tr><td>2026-09-13T09:16:31.976Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>PAYMENT_CREATED</td><td>PAY-1789290991970</td><td>Payment recorded: 75</td></tr><tr><td>2026-09-13T09:16:12.478Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>CHECK_IN</td><td>622E4DC7-19D2-497F-BAB3-4339A9F938D2-2026-0001</td><td>Guest checked in: test</td></tr><tr><td>2026-09-13T09:03:33.119Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_CREATED</td><td>test</td><td>Property created</td></tr><tr><td>2026-09-13T08:52:35.468Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>DATA_INTEGRITY_CHECK</td><td></td><td>1 issue(s) found</td></tr><tr><td>2026-09-12T16:50:14.761Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>PAYMENT_REFUND</td><td>REF-1789231811926</td><td>Refund recorded: 100</td></tr><tr><td>2026-09-12T16:50:07.542Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>RESERVATION_CANCELLED</td><td>TEST-0001</td><td>Reservation cancelled</td></tr><tr><td>2026-09-12T16:26:05.997Z</td><td>admin<br><small>Admin</small></td><td>System</td><td>PROPERTY_UPDATED</td><td>f41af7e7-ffc1-4a02-87d1-3d2e4b69f4d9</td><td>Property details updated</td></tr><tr><td>2026-09-12T15:48:37.194Z</td><td>admin<br><small>Admin</small></td><td>Shani Manor</td><td>AUDIT_CLEARED</td><td></td><td>Audit log was cleared</td></tr></tbody></table></div></div>
 </section>
 </section>
 </section>
@@ -1550,7 +1352,7 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <div class="form-grid">
 <div class="form-group">
 <label>Booking Type</label>
-<select id="bookingType" onchange="updateReservationForm();calculateReservation()"><option value="room">Individual Room</option></select>
+<select id="bookingType" onchange="updateReservationForm();calculateReservation()"><option value="room">Individual Room</option><option value="villa">Entire Villa</option></select>
 </div>
 <div class="form-group">
 <label>Guest Type</label>
@@ -1768,18 +1570,18 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
                 </td>
 
                 <td>
-                    13/09/2026, 13:28:17
+                    14/09/2026, 00:14:07
                 </td>
 
                 <td>
-                    13/09/2026, 13:28:17
+                    14/09/2026, 00:14:07
                 </td>
 
                 <td>
 
                     <div class="toolbar">
 
-                        <button class="btn btn-secondary btn-small" onclick="editUser('u_1789295297030_qskx0h')">
+                        <button class="btn btn-secondary btn-small" onclick="editUser('u_1789334047716_jyq00m')">
                             Edit
                         </button>
 
@@ -1886,6 +1688,8 @@ footer{padding:25px;text-align:center;color:#6b7280;font-size:12px}
 <div class="section" style="margin-top:16px;padding:14px;background:#f8faf9">
 <div class="section-header" style="margin-bottom:10px"><div><strong>Individual User Rights</strong><div style="font-size:11px;color:#6b7280;margin-top:3px">Click the modules this user can access. These rights override the role template.</div></div><div class="toolbar"><button class="btn btn-secondary btn-small" onclick="setAllUserPermissions(true)" type="button">Select All</button><button class="btn btn-secondary btn-small" onclick="setAllUserPermissions(false)" type="button">Clear All</button></div></div>
 <div id="userPermissionsGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"></div>
+ </div>
+ <div class="section" style="margin-top:12px;padding:14px;background:#f8faf9"><div class="section-header" style="margin-bottom:10px"><div><strong>Report Access</strong><div style="font-size:11px;color:#6b7280;margin-top:3px">Select exactly which reports this user can view or print.</div></div><div class="toolbar"><button class="btn btn-secondary btn-small" onclick="setAllUserReportPermissions(true)" type="button">Select All Reports</button><button class="btn btn-secondary btn-small" onclick="setAllUserReportPermissions(false)" type="button">Clear Reports</button></div></div><div id="userReportPermissionsGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"></div>
 </div>
 <div class="user-error" id="userError"></div>
 <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:18px">
@@ -1963,19 +1767,19 @@ function addExperienceToFolio(reservationId,experienceId){
 ========================================================= */
 
 const STORAGE = {
-    properties:"signature_customer_shani-manor_mtzqkvlz_properties",
-    reservations:"signature_customer_shani-manor_mtzqkvlz_reservations",
-    folios:"signature_customer_shani-manor_mtzqkvlz_folios",
-    payments:"signature_customer_shani-manor_mtzqkvlz_payments",
-    sales:"signature_customer_shani-manor_mtzqkvlz_sales",
-    guests:"signature_customer_shani-manor_mtzqkvlz_guests",
-    settings:"signature_customer_shani-manor_mtzqkvlz_settings",
-    users:"signature_customer_shani-manor_mtzqkvlz_users",
-    session:"signature_customer_shani-manor_mtzqkvlz_current_user",
-        audit:"signature_customer_shani-manor_mtzqkvlz_audit",
-    cashierClosings:"signature_customer_shani-manor_mtzqkvlz_cashier_closings",
-    pmAccounts:"signature_customer_shani-manor_mtzqkvlz_pm_accounts",
-    pmTransactions:"signature_customer_shani-manor_mtzqkvlz_pm_transactions"
+    properties:"signature_customer_wild-hasthi_mu0bd0lj_properties",
+    reservations:"signature_customer_wild-hasthi_mu0bd0lj_reservations",
+    folios:"signature_customer_wild-hasthi_mu0bd0lj_folios",
+    payments:"signature_customer_wild-hasthi_mu0bd0lj_payments",
+    sales:"signature_customer_wild-hasthi_mu0bd0lj_sales",
+    guests:"signature_customer_wild-hasthi_mu0bd0lj_guests",
+    settings:"signature_customer_wild-hasthi_mu0bd0lj_settings",
+    users:"signature_customer_wild-hasthi_mu0bd0lj_users",
+    session:"signature_customer_wild-hasthi_mu0bd0lj_current_user",
+        audit:"signature_customer_wild-hasthi_mu0bd0lj_audit",
+    cashierClosings:"signature_customer_wild-hasthi_mu0bd0lj_cashier_closings",
+    pmAccounts:"signature_customer_wild-hasthi_mu0bd0lj_pm_accounts",
+    pmTransactions:"signature_customer_wild-hasthi_mu0bd0lj_pm_transactions"
 };
 
 const DEFAULT_POS_MENU = [
@@ -2035,7 +1839,7 @@ function defaultProperty(id,name,location,roomCount,roomRate,options={}){
    HOTEL EDITION: no customer/property is preloaded.
    The Administrator configures the licensed property during setup.
 */
-const DEFAULT_PROPERTIES = [{"id":"shani-manor-mtzqkvlu","property":"Shani Manor","location":"Hikkaduwa, Sri Lanka","currency":"$","roomRate":66,"villaLocal":150,"villaForeign":260,"openingBalance":0,"maxGuests":9,"foodCostMarkup":20,"teaCoffeeIncluded":true,"bookingTypes":["room","villa"],"rateMatrix":null,"experiences":[],"rooms":[{"id":1,"name":"Room 01","type":"Guest Room","rate":66,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":2,"name":"Room 02","type":"Guest Room","rate":66,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":3,"name":"Room 03","type":"Guest Room","rate":66,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""},{"id":4,"name":"Room 04","type":"Guest Room","rate":66,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""}],"posMenu":[{"id":"lunch","name":"Lunch","category":"Meals","price":18,"active":true},{"id":"dinner","name":"Dinner","category":"Meals","price":22,"active":true},{"id":"tea","name":"Tea / Coffee","category":"Beverages","price":4,"active":true},{"id":"soft","name":"Soft Drink","category":"Beverages","price":3,"active":true},{"id":"juice","name":"Fresh Juice","category":"Beverages","price":5,"active":true},{"id":"water","name":"Water","category":"Beverages","price":2,"active":true},{"id":"laundry","name":"Laundry","category":"Services","price":10,"active":true},{"id":"airport","name":"Airport Transfer","category":"Transfers","price":35,"active":true}],"licenseHolder":"Shani Manor","licenseKey":"SHANI-MANOR-1.6.3","supportContact":"Signature Hospitality Sri Lanka","installationId":"SHANI-MANOR-001","createdAt":"13/09/2026, 14:34:18"}];
+const DEFAULT_PROPERTIES = [{"id":"wild-hasthi-mu0bd0lg","property":"Wild Hasthi","location":"Thanamalwila, Sri Lanka","currency":"$","roomRate":330,"villaLocal":0,"villaForeign":0,"openingBalance":0,"maxGuests":4,"foodCostMarkup":20,"teaCoffeeIncluded":true,"bookingTypes":["room"],"rateMatrix":null,"experiences":[],"rooms":[{"id":1,"name":"Room 01","type":"Guest Room","rate":330,"active":true,"housekeepingStatus":"clean","maintenanceNote":"","oosReason":""}],"posMenu":[{"id":"lunch","name":"Lunch","category":"Meals","price":18,"active":true},{"id":"dinner","name":"Dinner","category":"Meals","price":22,"active":true},{"id":"tea","name":"Tea / Coffee","category":"Beverages","price":4,"active":true},{"id":"soft","name":"Soft Drink","category":"Beverages","price":3,"active":true},{"id":"juice","name":"Fresh Juice","category":"Beverages","price":5,"active":true},{"id":"water","name":"Water","category":"Beverages","price":2,"active":true},{"id":"laundry","name":"Laundry","category":"Services","price":10,"active":true},{"id":"airport","name":"Airport Transfer","category":"Transfers","price":35,"active":true}],"licenseHolder":"Wild Hasthi","licenseKey":"PENDING","supportContact":"Signature Hospitality Sri Lanka","installationId":"INSTALL-1789334163268","createdAt":"14/09/2026, 00:16:03"}];
 const MASTER_PROPERTY_NEUTRAL=true;
 
 const APP_NAME="Signature PMS";
@@ -2078,6 +1882,20 @@ const ROLE_PAGES={
 const PERMISSION_PAGES=[
  ["dashboard","Dashboard"],["reservations","Reservations"],["guests","Guest Profiles"],["rooms","Rooms"],["checkin","Check-In"],["checkout","Check-Out"],["folios","Guest Folios"],["pmrooms","PM Rooms / Posting"],["pos","Restaurant POS"],["experiences","Experiences"],["payments","Payments"],["reports","Reports"],["settings","Settings"],["users","User Management"]
 ];
+const REPORT_PERMISSION_OPTIONS=[
+ ["daily_summary","Daily / Operational Summary"],["revenue_summary","Revenue Summary"],["reservation_report","Reservation Report"],["payment_report","Payments by Method"],["closing_report","Daily Closing / Reconciliation"],
+ ["printable_arrivals","Arrival List"],["printable_inhouse","Guest In-House List"],["printable_activity","Activity List"],["printable_departures","Departure List"],["printable_oos","Out of Order Rooms"],["printable_reservations","Reservations List"],["printable_nightaudit","Night Audit"],["printable_dailycash","Daily Cash"],["printable_dailychange","Daily Cash Change"],["printable_cashexpenses","Cash Expenses"],["printable_cashtransactions","Cash Transactions"],["printable_creditcard","Credit Card Payments"],["printable_banktransfer","Bank Transfers"],["printable_advance","Advance Payments"],
+ ["accounting_daily","Accounting — Daily Revenue"],["accounting_purchase","Accounting — Purchase Register"],["accounting_grn","Accounting — GRN Register"],["accounting_supplier","Accounting — Supplier Statements"],["accounting_aging","Accounting — AP Aging"],["accounting_expense","Accounting — Expense Register"],["accounting_trial","Accounting — Trial Balance"],["accounting_pl","Accounting — Profit & Loss"],["accounting_balance","Accounting — Balance Sheet"],["accounting_cashbank","Accounting — Cash & Bank Flow"],["accounting_inventory","Accounting — Inventory Valuation"],["accounting_ledger","Accounting — General Ledger Audit"]
+];
+const REPORT_PERMISSION_KEYS=REPORT_PERMISSION_OPTIONS.map(x=>x[0]);
+function getUserReportPermissions(user=currentUser){
+ if(user?.role==="Admin") return REPORT_PERMISSION_KEYS.slice();
+ const stored=Array.isArray(user?.permissions?.reports)?user.permissions.reports:null;
+ return stored?[...new Set(stored)]:[];
+}
+function canAccessReport(id,user=currentUser){ return user?.role==="Admin" || getUserReportPermissions(user).includes(id); }
+function requireReportAccess(id){ if(canAccessReport(id)) return true; alert("Access denied. This report has not been assigned to your user account."); return false; }
+
 const ROLE_PERMISSION_DEFAULTS={
  "Admin":PERMISSION_PAGES.map(x=>x[0]),
  "Manager":["dashboard","reservations","guests","rooms","checkin","checkout","folios","pmrooms","pos","experiences","payments","reports","settings"],
@@ -2161,6 +1979,13 @@ function ensurePropertyShape(p){
     out.property=out.property || "New Property";
     out.location=out.location || "";
     out.currency=out.currency || "$";
+    out.baseCurrency=String(out.baseCurrency||"LKR").toUpperCase();
+    out.guestCurrency=String(out.guestCurrency||((out.currency==="$"||out.currency==="USD")?"USD":out.currency)).toUpperCase();
+    out.postingRate=Number(out.postingRate||320);
+    out.settlementRate=Number(out.settlementRate||out.postingRate||320);
+    out.cashRate=Number(out.cashRate||out.settlementRate||320);
+    out.serviceChargeRate=Number(out.serviceChargeRate||0);
+    out.taxRate=Number(out.taxRate||0);
     out.roomRate=Number(out.roomRate||0);
     out.villaLocal=Number(out.villaLocal||0);
     out.villaForeign=Number(out.villaForeign||0);
@@ -3052,6 +2877,13 @@ function requireRole(...roles){
 }
 
 
+function applyReportPermissions(){
+ const sections={daily_summary:1,revenue_summary:2,payment_report:3,closing_report:4,reservation_report:5};
+ Object.entries(sections).forEach(([id,n])=>{const el=document.querySelector(`#reports .report-section:nth-of-type(${n})`);if(el)el.style.display=canAccessReport(id)?"":"none";});
+ document.querySelectorAll("#printReportType option").forEach(o=>{const ok=canAccessReport("printable_"+o.value);o.hidden=!ok;o.disabled=!ok;});
+ document.querySelectorAll("#accounting button[onclick*='printAccountingReport']").forEach(b=>{const m=(b.getAttribute("onclick")||"").match(/printAccountingReport\(['\"]([^'\"]+)/);if(m)b.style.display=canAccessReport("accounting_"+m[1])?"":"none";});
+}
+
 function applyRoleVisibility(){
 
     /* Check-In is an operational function. Keep it visible for all roles
@@ -3085,6 +2917,8 @@ function applyRoleVisibility(){
             : "none";
 
     }
+
+    applyReportPermissions();
 
 }
 
@@ -3257,6 +3091,9 @@ function renderUsers(){
 function renderUserPermissionCheckboxes(selected=[]){const box=document.getElementById("userPermissionsGrid");if(!box)return;const set=new Set(selected);box.innerHTML=PERMISSION_PAGES.map(([id,label])=>`<label style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:9px;font-size:12px;cursor:pointer"><input type="checkbox" class="user-permission" value="${id}" ${set.has(id)?"checked":""} style="width:auto"><span>${label}</span></label>`).join("");}
 function getSelectedUserPermissions(){return Array.from(document.querySelectorAll(".user-permission:checked")).map(el=>el.value);}
 function setAllUserPermissions(value){document.querySelectorAll(".user-permission").forEach(el=>el.checked=!!value);}
+function renderUserReportPermissionCheckboxes(selected=[]){const box=document.getElementById("userReportPermissionsGrid");if(!box)return;const set=new Set(selected);box.innerHTML=REPORT_PERMISSION_OPTIONS.map(([id,label])=>`<label style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:9px;font-size:12px;cursor:pointer"><input type="checkbox" class="user-report-permission" value="${id}" ${set.has(id)?"checked":""} style="width:auto"><span>${label}</span></label>`).join("");}
+function getSelectedUserReportPermissions(){return Array.from(document.querySelectorAll(".user-report-permission:checked")).map(el=>el.value);}
+function setAllUserReportPermissions(value){document.querySelectorAll(".user-report-permission").forEach(el=>el.checked=!!value); }
 
 function safeOpenUserModal(userId=null){
 
@@ -3326,6 +3163,7 @@ function openUserModal(userId=null){
             .textContent=
             "Leave password blank to keep the existing password.";
         renderUserPermissionCheckboxes(getUserPermissions(user).pages);
+    renderUserReportPermissionCheckboxes(user?.permissions?.reports || []);
 
     }else{
 
@@ -3490,7 +3328,7 @@ async function saveUser(){
 
     const propertyId=
         document.getElementById("userProperty")?.value || (role==="Admin" ? "all" : currentPropertyId || "");
-    const permissions={pages:getSelectedUserPermissions()};
+    const permissions={pages:getSelectedUserPermissions(),reports:getSelectedUserReportPermissions()};
 
 
     document.getElementById("userError")
@@ -4874,26 +4712,16 @@ function saveSettings(){
 ========================================================= */
 
 function clearRevenueHistory(){
-
-    if(!requireRole("Admin")) return;
-
-    const confirmClear=confirm(
-        "Clear booking and revenue history for "+(settings?.property||"this property")+"?\n\n"+
-        "This will delete reservations, folios, payments and POS sales for the CURRENT property only.\n\n"+
-        "Other properties will not be affected."
-    );
-    if(!confirmClear) return;
-
-    const finalConfirm=confirm("FINAL CONFIRMATION\n\nAll history for this property will be permanently deleted.\n\nContinue?");
-    if(!finalConfirm) return;
-
-    reservations=[];
-    folios=[];
-    payments=[];
-    sales=[];
-    saveData();
-    renderAll();
-    alert("Revenue history cleared for "+(settings?.property||"this property")+".");
+ if(!requireRole("Admin")) return;
+ const propertyName=settings?.property||"this property";
+ if(!confirm("Clear booking, revenue and accounting transaction history for "+propertyName+"?\n\nReservations, folios, payments, POS sales, PM postings, expenses, supplier payments, purchase orders, GRNs and journals for the CURRENT property will be permanently deleted.\n\nThe Chart of Accounts and settings will be kept.")) return;
+ if(!confirm("FINAL CONFIRMATION\n\nAll transaction history for this property will be permanently deleted.\n\nContinue?")) return;
+ reservations=[]; folios=[]; payments=[]; sales=[]; pmTransactions=[];
+ ["signature_pms_accounting_expenses","signature_pms_supplier_payments","signature_pms_purchase_orders","signature_pms_accounting_journals","signature_pms_grns"].forEach(key=>{
+  try{const all=JSON.parse(localStorage.getItem(key)||"[]");localStorage.setItem(key,JSON.stringify((all||[]).filter(x=>String(x.propertyId||currentPropertyId)!==String(currentPropertyId))));}catch(e){localStorage.setItem(key,"[]");}
+ });
+ saveData(); renderAll(); if(typeof renderAccounting==="function") renderAccounting();
+ alert("Revenue and accounting transaction history cleared for "+propertyName+". Chart of Accounts was kept.");
 }
 
 /* =========================================================
@@ -5186,6 +5014,9 @@ function saveReservation(){
         reservation.nights=nights;
         reservation.rate=rate;
         reservation.total=total;
+        reservation.currency=reservation.currency||settings?.guestCurrency||settings?.currency||"USD";
+        reservation.baseCurrency=reservation.baseCurrency||settings?.baseCurrency||"LKR";
+        reservation.postingRateAtBooking=Number(reservation.postingRateAtBooking||settings?.postingRate||320);
         reservation.adults=adults;
         reservation.children=children;
         reservation.childrenAges=childrenAges;
@@ -5262,6 +5093,9 @@ function saveReservation(){
         mealPlan,
         breakfastIncluded:bookingType==="room",
         deposit,
+        currency:String(settings?.guestCurrency||settings?.currency||"USD").toUpperCase(),
+        baseCurrency:String(settings?.baseCurrency||"LKR").toUpperCase(),
+        postingRateAtBooking:Number(settings?.postingRate||320),
         status:"Reserved",
         notes,
         createdAt:localDateTime()
@@ -6700,10 +6534,6 @@ function viewFolio(reservationId){
         </button>
 
     </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
-            <button class="btn btn-primary" onclick="printGuestInvoice('${reservationId}')">Print Guest Invoice</button>
-        </div>
-
     `;
 
 
@@ -7778,78 +7608,6 @@ function renderRooms(){
 
 
 /* =========================================================
-   GUEST INVOICE PRINTING
-========================================================= */
-
-function printGuestInvoice(reservationId){
-    const r=reservations.find(x=>x.id===reservationId);
-    if(!r){alert("Reservation not found.");return;}
-
-    const f=getFolio(reservationId)||{};
-    const guestPayments=payments.filter(p=>p.reservationId===reservationId);
-    const paid=getPaymentsTotal(reservationId);
-    const total=getFolioTotal(reservationId);
-    const balance=Math.max(0,total-paid);
-    const room=r.bookingType==="villa"?"Entire Villa":getRoomLabel(r.roomId);
-    const propertyName=settings?.property||"Signature Property";
-    const propertyLocation=settings?.location||"";
-    const currency=settings?.currency||"USD";
-    const moneyPrint=n=>currency+" "+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-    const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-
-    const accommodation=Number(r.total||0);
-    const restaurant=Number(f.restaurant||0);
-    const extras=Number(f.extras||0);
-    const serviceCharges=Number(f.serviceCharges||0);
-    const taxes=Number(f.taxes||0);
-    const discounts=Number(f.discounts||0);
-
-    const salesForGuest=sales.filter(x=>x.reservationId===reservationId);
-    const restaurantItems=[];
-    salesForGuest.forEach(sale=>{
-        (sale.items||[]).forEach(item=>restaurantItems.push({
-            description:"Restaurant — "+(item.name||"Item"),
-            qty:Number(item.qty||1),
-            amount:Number(item.price||0)*Number(item.qty||1),
-            date:sale.date||sale.dateTime||""
-        }));
-    });
-
-    const extraItems=Array.isArray(f.extraItems)?f.extraItems.map(x=>({
-        description:x.description||"Extra charge",qty:1,amount:Number(x.amount||0),date:x.addedAt||""
-    })):[];
-
-    let rows=`<tr><td>Accommodation — ${esc(room)} (${Number(r.nights||0)} night${Number(r.nights||0)===1?"":"s"})</td><td class="num">${moneyPrint(accommodation)}</td></tr>`;
-    restaurantItems.forEach(x=>{rows+=`<tr><td>${esc(x.description)} × ${x.qty}</td><td class="num">${moneyPrint(x.amount)}</td></tr>`;});
-    extraItems.forEach(x=>{rows+=`<tr><td>${esc(x.description)}</td><td class="num">${moneyPrint(x.amount)}</td></tr>`;});
-    if(serviceCharges) rows+=`<tr><td>Service Charges</td><td class="num">${moneyPrint(serviceCharges)}</td></tr>`;
-    if(taxes) rows+=`<tr><td>Taxes</td><td class="num">${moneyPrint(taxes)}</td></tr>`;
-    if(discounts) rows+=`<tr><td>Discounts</td><td class="num">-${moneyPrint(discounts)}</td></tr>`;
-
-    const paymentRows=guestPayments.length?guestPayments.map(p=>`<tr><td>${esc(p.date||"")}</td><td>${esc(p.type||"Payment")}</td><td>${esc(p.method||"")}</td><td class="num">${moneyPrint(Math.abs(Number(p.amount||0)))}</td></tr>`).join(""):`<tr><td colspan="4">No payments recorded</td></tr>`;
-    const childAges=Array.isArray(r.childrenAges)&&r.childrenAges.length?r.childrenAges.map((a,i)=>`Child ${i+1}: ${esc(a)} years`).join(" · "):"None";
-
-    const w=window.open("","_blank","width=900,height=700");
-    if(!w){alert("Please allow pop-ups to print the guest invoice.");return;}
-    w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Guest Invoice — ${esc(r.bookingNo)}</title>
-    <style>
-    *{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#111827;margin:0;padding:32px;background:#fff;font-size:13px}
-    .invoice{max-width:820px;margin:auto}.head{display:flex;justify-content:space-between;border-bottom:2px solid #111827;padding-bottom:16px;margin-bottom:18px}.brand{font-size:23px;font-weight:700}.muted{color:#6b7280}.title{text-align:right}.title h1{margin:0 0 5px;font-size:22px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;margin-bottom:18px}.box{border:1px solid #d1d5db;border-radius:6px;padding:12px}.box strong{display:block;margin-bottom:4px}.section-title{font-size:14px;font-weight:700;margin:20px 0 8px;border-bottom:1px solid #d1d5db;padding-bottom:6px}table{width:100%;border-collapse:collapse}th,td{padding:8px 6px;border-bottom:1px solid #e5e7eb;text-align:left}th{font-size:12px;background:#f3f4f6}.num{text-align:right}.totals{margin-left:auto;width:330px;margin-top:12px}.totals div{display:flex;justify-content:space-between;padding:5px 0}.grand{font-size:16px;font-weight:700;border-top:2px solid #111827;margin-top:5px;padding-top:8px}.balance{font-size:16px;font-weight:700}.footer{margin-top:30px;padding-top:12px;border-top:1px solid #d1d5db;text-align:center;color:#6b7280;font-size:11px}.no-print{margin-bottom:18px;text-align:right}@media print{body{padding:0}.no-print{display:none!important}}
-    </style></head><body><div class="invoice">
-    <div class="no-print"><button onclick="window.print()">Print Invoice</button></div>
-    <div class="head"><div><div class="brand">${esc(propertyName)}</div><div class="muted">${esc(propertyLocation)}</div></div><div class="title"><h1>GUEST INVOICE</h1><div>Invoice / Booking: <strong>${esc(r.bookingNo)}</strong></div><div class="muted">Printed: ${esc(localDateTime())}</div></div></div>
-    <div class="grid"><div class="box"><strong>Guest</strong>${esc(r.guestName)}<br>${esc(r.phone||"")}<br>${esc(r.email||"")}</div><div class="box"><strong>Stay</strong>${esc(room)}<br>Check-in: ${esc(formatDate(r.checkIn))}<br>Check-out: ${esc(formatDate(r.checkOut))}<br>Meal Plan: ${esc(r.mealPlan||"-")}</div><div class="box"><strong>Occupancy</strong>Adults: ${Number(r.adults||0)}<br>Children: ${Number(r.children||0)}<br>${childAges}</div><div class="box"><strong>Status</strong>${esc(r.status||"")}<br>Booking Type: ${esc(r.bookingType||"")}</div></div>
-    <div class="section-title">Charges</div><table><thead><tr><th>Description</th><th class="num">Amount</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="totals"><div><span>Gross Charges</span><strong>${moneyPrint(total)}</strong></div><div><span>Payments Received</span><strong>- ${moneyPrint(paid)}</strong></div><div class="grand"><span>Balance Due</span><span>${moneyPrint(balance)}</span></div></div>
-    <div class="section-title">Payments</div><table><thead><tr><th>Date</th><th>Type</th><th>Method</th><th class="num">Amount</th></tr></thead><tbody>${paymentRows}</tbody></table>
-    <div class="footer">Thank you for staying with ${esc(propertyName)}.</div></div></body></html>`);
-    w.document.close();
-    w.focus();
-    setTimeout(()=>w.print(),300);
-}
-
-
-/* =========================================================
    ROOM PROFILE
 ========================================================= */
 
@@ -8651,7 +8409,8 @@ else if(["creditcard","banktransfer","advance","dailycash","cashtransactions"].i
 else if(type==="dailychange"||type==="cashexpenses"){let list=pay.filter(p=>String(p.type||"").toLowerCase().includes(type==="dailychange"?"change":"expense"));title=type==="dailychange"?"Daily Cash Change":"Cash Expenses";body=reportRowsTable(["Date / Time","Reference","Guest","Details","Amount","Method","Received By"],list.map(p=>[escapeHtml(p.date||""),escapeHtml(p.reference||""),escapeHtml(p.guestName||""),escapeHtml(p.notes||p.details||""),money(p.amount),escapeHtml(p.method||""),escapeHtml(p.receivedBy||"")]));}
 else if(type==="nightaudit"){const a=reservations.filter(r=>r.checkIn===selected&&r.status!=="Cancelled").length,d=reservations.filter(r=>r.checkOut===selected&&["Checked-In","Checked-Out"].includes(r.status)).length,h=reservations.filter(r=>r.status==="Checked-In"&&r.checkIn<=selected&&r.checkOut>selected).length;const rev=reservations.filter(r=>r.checkIn===selected&&r.status!=="Cancelled").reduce((x,r)=>x+Number(r.total||0),0)+sales.filter(x=>x.date===selected).reduce((x,r)=>x+Number(r.total||0),0);title="Night Audit";body=`<div class="report-section"><div class="report-line"><span>Arrivals</span><strong>${a}</strong></div><div class="report-line"><span>Departures</span><strong>${d}</strong></div><div class="report-line"><span>In-House Guests</span><strong>${h}</strong></div><div class="report-line"><span>Accommodation + POS Revenue</span><strong>${money(rev)}</strong></div><div class="report-line"><span>Payments Received</span><strong>${money(pay.reduce((x,p)=>x+Number(p.amount||0),0))}</strong></div><div class="report-line"><strong>Outstanding Guest Balance</strong><strong>${money(reservations.filter(r=>["Reserved","Checked-In"].includes(r.status)).reduce((x,r)=>x+getBalance(r.id),0))}</strong></div></div>`;}
 box.innerHTML=reportHeader(title,selected)+body+`<div style="margin-top:30px;display:flex;justify-content:space-between"><span>Prepared by: ${escapeHtml(currentUser?.username||"")}</span><span>Signature: ____________________</span></div>`;}
-function printSelectedReport(){if(!canDo("reports.print")){alert("You do not have permission to print reports.");return;}renderPrintableReport();window.print();}
+function printSelectedReport(){
+ const type=document.getElementById("printReportType")?.value; if(type && !requireReportAccess("printable_"+type)) return;if(!canDo("reports.print")){alert("You do not have permission to print reports.");return;}renderPrintableReport();window.print();}
 
 function renderReports(){
 
@@ -9834,7 +9593,7 @@ function generateCustomerEdition(){
     // Customer editions must open on Dashboard and must never expose the Master generator.
     html=html.replace('<body>', '<body data-customer-build="true">');
     const storagePrefix="signature_customer_"+slug+"_"+Date.now().toString(36);
-    html=html.replace(/signature_customer_shani-manor_mtzqkvlz_/g,storagePrefix+"_");
+    html=html.replace(/signature_customer_wild-hasthi_mu0bd0lj_/g,storagePrefix+"_");
     html=html.replace('<section id="customerGeneratorSection"','<section id="customerGeneratorSection"');
     const safeName=propertyName.replace(/[^a-z0-9]+/gi,"_").replace(/^_+|_+$/g,"");
     const fileName=`Signature_PMS_${safeName}_v${APP_VERSION}.html`;
@@ -9850,7 +9609,428 @@ function generateCustomerEdition(){
     if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hideGenerator);else hideGenerator();
 })();
 
+
+/* =========================================================
+   ACCOUNTING + PURCHASING EXTENSION v1.6.5
+========================================================= */
+(function(){
+"use strict";
+
+const ACC_STORE = {
+  expenses: "signature_pms_accounting_expenses",
+  supplierPayments: "signature_pms_supplier_payments",
+  purchaseOrders: "signature_pms_purchase_orders",
+  accounts: "signature_pms_accounts",
+  journals: "signature_pms_accounting_journals"
+};
+
+function accRead(key){
+  try { return JSON.parse(localStorage.getItem(key)||"[]"); } catch(e){ return []; }
+}
+function accWrite(key,val){ localStorage.setItem(key,JSON.stringify(val||[])); }
+function accProp(list){ return (list||[]).filter(x=>String(x.propertyId||currentPropertyId)===String(currentPropertyId)); }
+function accountingRateFor(obj){
+  if(!obj) return Number(settings?.postingRate||320);
+  const c=String(obj.currency||obj.guestCurrency||settings?.guestCurrency||settings?.currency||"USD").toUpperCase();
+  if(c===String(settings?.baseCurrency||"LKR").toUpperCase() || c==="LKR") return 1;
+  return Number(obj.postingRateAtBooking||obj.postingRateAtCalculation||obj.accountingRate||settings?.postingRate||320)||320;
+}
+function toAccountingAmount(v,obj){ return Number(v||0)*accountingRateFor(obj); }
+function accMoney(v){ return String(settings?.baseCurrency||"LKR").toUpperCase()+Number(v||0).toFixed(2); }
+function accId(prefix){ return prefix+"_"+Date.now()+"_"+Math.random().toString(36).slice(2,8); }
+
+const DEFAULT_ACCOUNTS = [
+ {code:"1000",name:"Cash on Hand",type:"Asset"},
+ {code:"1010",name:"Bank Account",type:"Asset"},
+ {code:"1100",name:"Accounts Receivable",type:"Asset"},
+ {code:"1200",name:"Inventory Assets",type:"Asset"},
+ {code:"2000",name:"Accounts Payable",type:"Liability"},
+ {code:"3000",name:"Owner Equity",type:"Equity"},
+ {code:"4000",name:"Room Revenue",type:"Revenue"},
+ {code:"4100",name:"Restaurant Revenue",type:"Revenue"},
+ {code:"4200",name:"Other Operating Revenue",type:"Revenue"},
+ {code:"5000",name:"Cost of Sales",type:"Expense"},
+ {code:"5100",name:"Food Cost",type:"Expense"},
+ {code:"5200",name:"Beverage Cost",type:"Expense"},
+ {code:"5300",name:"Payroll & Staff Cost",type:"Expense"},
+ {code:"5400",name:"Utilities",type:"Expense"},
+ {code:"5500",name:"Repairs & Maintenance",type:"Expense"},
+ {code:"5600",name:"Sales & Marketing",type:"Expense"},
+ {code:"5700",name:"Administrative Expenses",type:"Expense"},
+ {code:"5800",name:"Other Operating Expenses",type:"Expense"}
+];
+
+function getAccounts(){
+  let all=accRead(ACC_STORE.accounts);
+  let changed=false;
+  DEFAULT_ACCOUNTS.forEach(d=>{
+    if(!all.some(a=>a.code===d.code && String(a.propertyId)===String(currentPropertyId))){
+      all.push({...d,id:accId("coa"),propertyId:currentPropertyId});
+      changed=true;
+    }
+  });
+  if(changed) accWrite(ACC_STORE.accounts,all);
+  return accProp(all);
+}
+function accountByName(name){ return getAccounts().find(a=>a.name===name); }
+function accountByCode(code){ return getAccounts().find(a=>a.code===code); }
+
+function journalEntries(){
+  return accProp(accRead(ACC_STORE.journals));
+}
+function postJournal(date,ref,description,lines,source){
+  const clean=lines.map(x=>({...x,debit:Number(x.debit||0),credit:Number(x.credit||0)}))
+    .filter(x=>x.debit>0 || x.credit>0);
+  const d=clean.reduce((s,x)=>s+x.debit,0), c=clean.reduce((s,x)=>s+x.credit,0);
+  if(Math.abs(d-c)>0.01) throw new Error("Journal is not balanced.");
+  const all=accRead(ACC_STORE.journals);
+  all.push({id:accId("je"),propertyId:currentPropertyId,date:date||localDateTime(),reference:ref||accId("JE"),description:description||"",source:source||"Manual",lines:clean,postedBy:currentUser?.username||"Admin"});
+  accWrite(ACC_STORE.journals,all);
+}
+function datePart(v){ return String(v||"").slice(0,10); }
+function inRange(v){
+  const from=document.getElementById("acctFromDate")?.value||"0000-01-01";
+  const to=document.getElementById("acctToDate")?.value||"9999-12-31";
+  const d=datePart(v); return d>=from && d<=to;
+}
+function getGRNs(){
+  try{
+    if(typeof PMSStore!=="undefined" && PMSStore.getGRNs) return accProp(PMSStore.getGRNs());
+  }catch(e){}
+  return accProp(accRead("signature_pms_grns"));
+}
+function saveGRNs(list){
+  try{
+    if(typeof PMSStore!=="undefined" && PMSStore.saveGRNs){ PMSStore.saveGRNs(list); return; }
+  }catch(e){}
+  accWrite("signature_pms_grns",list||[]);
+}
+function supplierName(x){ return String(x?.supplier||x?.supplierName||x?.vendor||"Unspecified Supplier"); }
+
+function grnRecords(){
+  return getGRNs().map(g=>({
+    ...g,
+    amount:Number(g.totalAmount||g.amount||g.total||0),
+    supplier:supplierName(g),
+    invoice:String(g.invoiceRef||g.invoice||g.supplierInvoice||"")
+  }));
+}
+function supplierPayments(){ return accProp(accRead(ACC_STORE.supplierPayments)); }
+function purchaseOrders(){ return accProp(accRead(ACC_STORE.purchaseOrders)); }
+function expenses(){ return accProp(accRead(ACC_STORE.expenses)); }
+
+function purchaseRecords(){
+  const grns=grnRecords().map(g=>({date:g.date||g.receivedDate||g.createdAt,type:"GRN",reference:g.id||g.reference||"",supplier:g.supplier,invoice:g.invoice,payment:g.paymentStatus||g.paymentMethod||"Credit",amount:g.amount,status:g.status||g.paymentStatus||""}));
+  const pos=purchaseOrders().map(p=>({date:p.date,type:"PO",reference:p.number||p.id,supplier:p.supplier,invoice:p.invoice||"",payment:p.payment||"Pending",amount:Number(p.total||0),status:p.status||"Open"}));
+  return grns.concat(pos).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
+}
+
+function apBySupplier(){
+  const map={};
+  grnRecords().forEach(g=>{
+    const s=g.supplier;
+    map[s]=(map[s]||{supplier:s,purchases:0,payments:0});
+    if(String(g.payment||g.paymentStatus||"").toLowerCase().includes("credit")) map[s].purchases+=g.amount;
+    else if(!String(g.payment||"").toLowerCase().includes("credit")) map[s].purchases+=0;
+  });
+  supplierPayments().forEach(p=>{
+    const s=p.supplier||"Unspecified Supplier";
+    map[s]=(map[s]||{supplier:s,purchases:0,payments:0});
+    map[s].payments+=Number(p.amount||0);
+  });
+  return Object.values(map).map(x=>({...x,balance:Math.max(0,x.purchases-x.payments)}));
+}
+
+function totalRevenue(){
+  const res=accProp(reservations||[]);
+  const room=res.filter(r=>!["cancelled","no_show"].includes(String(r.status||"").toLowerCase()))
+    .filter(r=>inRange(r.checkIn||r.date||r.createdAt))
+    .reduce((s,r)=>s+Number(r.total||r.totalAmount||0),0);
+  const pos=accProp(sales||[]).filter(s=>inRange(s.date||s.createdAt))
+    .reduce((s,x)=>s+Number(x.total||x.amount||0),0);
+  return room+pos;
+}
+function totalManualExpenses(){
+  return expenses().filter(e=>inRange(e.date)).reduce((s,e)=>s+Number(e.amount||0),0);
+}
+function expenseByAccount(){
+  const out={};
+  expenses().filter(e=>inRange(e.date)).forEach(e=>{
+    const n=e.account||"Other Operating Expenses"; out[n]=(out[n]||0)+Number(e.amount||0);
+  });
+  return out;
+}
+function cashBankFlow(){
+  const ps=accProp(payments||[]).filter(p=>inRange(p.date||p.createdAt));
+  const sp=supplierPayments().filter(p=>inRange(p.date));
+  const ex=expenses().filter(e=>inRange(e.date));
+  let cashIn=0,bankIn=0,cashOut=0,bankOut=0;
+  ps.filter(paymentIsReceived).forEach(p=>{
+    if(paymentIsRefund(p)) return;
+    const a=toAccountingAmount(Math.abs(Number(p.amount||0)),p);
+    if(p.method==="Cash") cashIn+=a; else bankIn+=a;
+  });
+  sp.forEach(p=>{const a=Number(p.amount||0); if(p.method==="Cash") cashOut+=a; else bankOut+=a;});
+  ex.forEach(e=>{const a=Number(e.amount||0); if(e.paymentMethod==="Cash") cashOut+=a; else bankOut+=a;});
+  return {cashIn,bankIn,cashOut,bankOut,cashNet:cashIn-cashOut,bankNet:bankIn-bankOut};
+}
+function inventoryValue(){
+  try{
+    const items=typeof inventory!=="undefined" ? accProp(inventory) : [];
+    return items.reduce((s,x)=>s+Number(x.stock||x.quantity||x.qty||0)*Number(x.averageCost||x.unitCost||x.cost||0),0);
+  }catch(e){ return 0; }
+}
+function ledgerLines(){
+  const out=[];
+  journalEntries().forEach(j=>j.lines.forEach(l=>out.push({...l,date:j.date,reference:j.reference,description:j.description,source:j.source})));
+  return out;
+}
+function accountBalances(){
+  const balances={};
+  getAccounts().forEach(a=>balances[a.code]={...a,debit:0,credit:0,balance:0});
+  ledgerLines().filter(x=>inRange(x.date)).forEach(x=>{
+    const a=getAccounts().find(a=>a.name===x.account||a.code===x.accountCode);
+    if(!a) return;
+    balances[a.code].debit+=Number(x.debit||0); balances[a.code].credit+=Number(x.credit||0);
+  });
+  Object.values(balances).forEach(a=>{
+    if(["Asset","Expense"].includes(a.type)) a.balance=a.debit-a.credit;
+    else a.balance=a.credit-a.debit;
+  });
+  return Object.values(balances);
+}
+
+function renderPurchaseRegister(){
+  const tb=document.getElementById("purchaseRegisterTable"); if(!tb) return;
+  const q=(document.getElementById("purchaseSearch")?.value||"").toLowerCase();
+  const rows=purchaseRecords().filter(r=>[r.supplier,r.invoice,r.reference,r.type].join(" ").toLowerCase().includes(q));
+  tb.innerHTML=rows.length?rows.map(r=>`<tr><td>${escapeHtml(datePart(r.date))}</td><td>${escapeHtml(r.type)}</td><td>${escapeHtml(r.reference)}</td><td>${escapeHtml(r.supplier)}</td><td>${escapeHtml(r.invoice)}</td><td>${escapeHtml(r.payment)}</td><td style="text-align:right">${accMoney(r.amount)}</td><td>${escapeHtml(r.status)}</td></tr>`).join(""):`<tr><td colspan="8" class="empty">No purchase records.</td></tr>`;
+}
+function renderSupplierStatements(){
+  const tb=document.getElementById("supplierStatementTable"); if(!tb) return;
+  const rows=apBySupplier();
+  tb.innerHTML=rows.length?rows.map(r=>`<tr><td>${escapeHtml(r.supplier)}</td><td>${accMoney(r.purchases)}</td><td>${accMoney(r.payments)}</td><td><strong>${accMoney(r.balance)}</strong></td><td><button class="btn btn-secondary btn-small" onclick="printSupplierStatement('${String(r.supplier).replace(/'/g,"\\'")}')">Print</button></td></tr>`).join(""):`<tr><td colspan="5" class="empty">No supplier accounts.</td></tr>`;
+}
+function renderChart(){
+  const tb=document.getElementById("chartOfAccountsTable"); if(!tb) return;
+  const rows=accountBalances();
+  tb.innerHTML=rows.map(a=>`<tr><td>${a.code}</td><td>${escapeHtml(a.name)}</td><td>${a.type}</td><td>${accMoney(a.debit)}</td><td>${accMoney(a.credit)}</td><td><strong>${accMoney(a.balance)}</strong></td></tr>`).join("");
+}
+function renderAccounting(){
+  getAccounts();
+  const rev=totalRevenue(), exp=totalManualExpenses(), ap=apBySupplier().reduce((s,x)=>s+x.balance,0);
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=typeof v==="number"?accMoney(v):v;};
+  set("acctRevenue",rev);set("acctExpenses",exp);set("acctNetProfit",rev-exp);set("acctPayables",ap);
+  set("acctGRNValue",grnRecords().filter(g=>inRange(g.date||g.receivedDate||g.createdAt)).reduce((s,g)=>s+g.amount,0));
+  set("acctSupplierPayments",supplierPayments().filter(p=>inRange(p.date)).reduce((s,p)=>s+Number(p.amount||0),0));
+  set("acctOpenPO",purchaseOrders().filter(p=>String(p.status||"Open")!=="Closed").length);
+  renderPurchaseRegister(); renderSupplierStatements(); renderChart();
+}
+function accountingDateToday(){
+  const t=localDateString(); const a=document.getElementById("acctFromDate"),b=document.getElementById("acctToDate"); if(a)a.value=t;if(b)b.value=t;renderAccounting();
+}
+function openPurchaseOrderModal(){
+  if(!requireRole("Admin","Manager")) return;
+  const id="purchaseOrderModal";
+  if(!document.getElementById(id)){
+    document.body.insertAdjacentHTML("beforeend",`<div class="modal" id="${id}"><div class="modal-box"><div class="modal-header"><h3>Purchase Order</h3><button class="close-btn" onclick="document.getElementById('${id}').classList.remove('show')">×</button></div><div class="form-grid">
+      <div class="form-group"><label>Supplier *</label><input id="poSupplier"></div>
+      <div class="form-group"><label>PO Number</label><input id="poNumber" placeholder="Auto-generated if blank"></div>
+      <div class="form-group"><label>Date</label><input id="poDate" type="date"></div>
+      <div class="form-group"><label>Total *</label><input id="poTotal" type="number" min="0" step="0.01"></div>
+      <div class="form-group"><label>Payment</label><select id="poPayment"><option>Credit</option><option>Cash</option><option>Bank</option></select></div>
+      <div class="form-group"><label>Status</label><select id="poStatus"><option>Open</option><option>Approved</option><option>Closed</option><option>Cancelled</option></select></div>
+      <div class="form-group full"><label>Notes</label><textarea id="poNotes"></textarea></div>
+    </div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:15px"><button class="btn btn-secondary" onclick="document.getElementById('${id}').classList.remove('show')">Cancel</button><button class="btn btn-primary" onclick="savePurchaseOrder()">Save PO</button></div></div></div>`);
+  }
+  document.getElementById("poDate").value=localDateString(); document.getElementById(id).classList.add("show");
+}
+function savePurchaseOrder(){
+  const supplier=document.getElementById("poSupplier").value.trim(), total=Number(document.getElementById("poTotal").value||0);
+  if(!supplier||total<=0){alert("Enter supplier and a valid PO total.");return;}
+  const po={id:accId("po"),propertyId:currentPropertyId,date:document.getElementById("poDate").value||localDateString(),number:document.getElementById("poNumber").value.trim()||("PO-"+Date.now()),supplier,total,payment:document.getElementById("poPayment").value,status:document.getElementById("poStatus").value,notes:document.getElementById("poNotes").value.trim(),createdBy:currentUser?.username||"Admin"};
+  const all=accRead(ACC_STORE.purchaseOrders);all.push(po);accWrite(ACC_STORE.purchaseOrders,all);
+  document.getElementById("purchaseOrderModal").classList.remove("show");renderAccounting();logAudit("PURCHASE_ORDER_CREATED",po.number,"Purchase order created",currentPropertyId);alert("Purchase Order saved.");
+}
+function openSupplierPaymentModal(supplierPreset){
+  if(!requireRole("Admin","Manager","Cashier")) return;
+  const id="supplierPaymentModal";
+  if(!document.getElementById(id)){
+    document.body.insertAdjacentHTML("beforeend",`<div class="modal" id="${id}"><div class="modal-box"><div class="modal-header"><h3>Supplier Payment / AP Settlement</h3><button class="close-btn" onclick="document.getElementById('${id}').classList.remove('show')">×</button></div><div class="form-grid">
+      <div class="form-group"><label>Supplier *</label><input id="spSupplier"></div>
+      <div class="form-group"><label>Date</label><input id="spDate" type="date"></div>
+      <div class="form-group"><label>Amount *</label><input id="spAmount" type="number" min="0.01" step="0.01"></div>
+      <div class="form-group"><label>Method</label><select id="spMethod"><option>Cash</option><option>Bank Transfer</option><option>Card</option></select></div>
+      <div class="form-group"><label>Reference</label><input id="spReference"></div>
+      <div class="form-group full"><label>Notes</label><textarea id="spNotes"></textarea></div>
+    </div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:15px"><button class="btn btn-secondary" onclick="document.getElementById('${id}').classList.remove('show')">Cancel</button><button class="btn btn-success" onclick="saveSupplierPayment()">Save Payment</button></div></div></div>`);
+  }
+  document.getElementById("spSupplier").value=supplierPreset||"";document.getElementById("spDate").value=localDateString();document.getElementById(id).classList.add("show");
+}
+function saveSupplierPayment(){
+  const supplier=document.getElementById("spSupplier").value.trim(), amount=Number(document.getElementById("spAmount").value||0);
+  if(!supplier||amount<=0){alert("Enter supplier and a valid amount.");return;}
+  const method=document.getElementById("spMethod").value, ref=document.getElementById("spReference").value.trim()||("SP-"+Date.now());
+  const p={id:accId("sp"),propertyId:currentPropertyId,date:document.getElementById("spDate").value||localDateString(),supplier,amount,method,reference:ref,notes:document.getElementById("spNotes").value.trim(),createdBy:currentUser?.username||"Admin"};
+  const all=accRead(ACC_STORE.supplierPayments);all.push(p);accWrite(ACC_STORE.supplierPayments,all);
+  try{
+    postJournal(p.date,ref,"Supplier payment",[
+      {account:"Accounts Payable",debit:amount,credit:0},
+      {account:method==="Cash"?"Cash on Hand":"Bank Account",debit:0,credit:amount}
+    ],"Supplier Payment");
+  }catch(e){console.warn(e);}
+  document.getElementById("supplierPaymentModal").classList.remove("show");renderAccounting();alert("Supplier payment recorded.");
+}
+function openExpenseModal(){
+  if(!requireRole("Admin","Manager")) return;
+  const id="expenseModal";
+  if(!document.getElementById(id)){
+    document.body.insertAdjacentHTML("beforeend",`<div class="modal" id="${id}"><div class="modal-box"><div class="modal-header"><h3>Expense / Journal Entry</h3><button class="close-btn" onclick="document.getElementById('${id}').classList.remove('show')">×</button></div><div class="form-grid">
+      <div class="form-group"><label>Date</label><input id="exDate" type="date"></div>
+      <div class="form-group"><label>Reference</label><input id="exRef"></div>
+      <div class="form-group"><label>Expense Account</label><select id="exAccount"></select></div>
+      <div class="form-group"><label>Payment / Credit</label><select id="exPayment"><option>Cash</option><option>Bank</option><option>Accounts Payable</option></select></div>
+      <div class="form-group"><label>Amount *</label><input id="exAmount" type="number" min="0.01" step="0.01"></div>
+      <div class="form-group full"><label>Description</label><textarea id="exDescription"></textarea></div>
+    </div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:15px"><button class="btn btn-secondary" onclick="document.getElementById('${id}').classList.remove('show')">Cancel</button><button class="btn btn-primary" onclick="saveExpenseEntry()">Post Entry</button></div></div></div>`);
+  }
+  const sel=document.getElementById("exAccount");sel.innerHTML=getAccounts().filter(a=>a.type==="Expense").map(a=>`<option>${escapeHtml(a.name)}</option>`).join("");
+  document.getElementById("exDate").value=localDateString();document.getElementById("expenseModal").classList.add("show");
+}
+function saveExpenseEntry(){
+  const amount=Number(document.getElementById("exAmount").value||0); if(amount<=0){alert("Enter a valid amount.");return;}
+  const account=document.getElementById("exAccount").value,pay=document.getElementById("exPayment").value,ref=document.getElementById("exRef").value.trim()||("EXP-"+Date.now()),date=document.getElementById("exDate").value||localDateString(),desc=document.getElementById("exDescription").value.trim()||"Expense";
+  const e={id:accId("exp"),propertyId:currentPropertyId,date,reference:ref,account,amount,paymentMethod:pay,description:desc,createdBy:currentUser?.username||"Admin"};
+  const all=accRead(ACC_STORE.expenses);all.push(e);accWrite(ACC_STORE.expenses,all);
+  const credit=pay==="Cash"?"Cash on Hand":pay==="Bank"?"Bank Account":"Accounts Payable";
+  try{postJournal(date,ref,desc,[{account,debit:amount,credit:0},{account:credit,debit:0,credit:amount}],"Expense");}catch(err){alert(err.message);return;}
+  document.getElementById("expenseModal").classList.remove("show");renderAccounting();alert("Expense / journal entry posted.");
+}
+function reportShell(title,body){
+  const w=window.open("","_blank","width=1000,height=800");if(!w){alert("Please allow pop-ups to print reports.");return;}
+  w.document.write(`<html><head><title>${escapeHtml(title)}</title><style>body{font-family:Arial;padding:25px;color:#17251d}h1{margin-bottom:5px}h2{margin-top:25px}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid #ddd;text-align:left}th{background:#f3f5f4}.right{text-align:right}.total{font-weight:bold}small{color:#666}@media print{.no-print{display:none}}
+#users .section{width:100%;max-width:none}#users .table-wrap{width:100%;overflow-x:auto}#users table{width:100%;min-width:900px}#users table th,#users table td{white-space:nowrap}#users table th:first-child,#users table td:first-child{min-width:160px}#users table th:last-child,#users table td:last-child{min-width:160px}#userModal .modal-box{max-width:900px;width:min(96vw,900px)}#userPermissionsGrid,#userReportPermissionsGrid{grid-template-columns:repeat(3,minmax(0,1fr)) !important}@media(max-width:900px){#userPermissionsGrid,#userReportPermissionsGrid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}@media(max-width:600px){#userPermissionsGrid,#userReportPermissionsGrid{grid-template-columns:1fr !important}}
+</style></head><body><h1>${escapeHtml(settings?.property||"Hotel")} — ${escapeHtml(title)}</h1><small>Printed: ${new Date().toLocaleString()}</small>${body}<script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>`);w.document.close();
+}
+function printAccountingReport(type){
+ if(!requireReportAccess("accounting_"+type)) return;
+  const rev=totalRevenue(), exp=totalManualExpenses(), profit=rev-exp, ap=apBySupplier().reduce((s,x)=>s+x.balance,0), flow=cashBankFlow(), bal=accountBalances();
+  let title="",body="";
+  if(type==="pl"){
+    title="Profit & Loss"; body=`<h2>Income</h2><div class="total">Total Revenue: ${accMoney(rev)}</div><h2>Expenses</h2>${Object.entries(expenseByAccount()).map(([n,v])=>`<div>${escapeHtml(n)} <span style="float:right">${accMoney(v)}</span></div>`).join("")||"<p>No posted expenses.</p>"}<h2>Net Profit / (Loss): ${accMoney(profit)}</h2>`;
+  } else if(type==="balance"){
+    title="Balance Sheet"; body=`<h2>Assets</h2>${bal.filter(a=>a.type==="Asset").map(a=>`<div>${a.code} — ${escapeHtml(a.name)} <span style="float:right">${accMoney(a.balance)}</span></div>`).join("")}<h2>Liabilities</h2>${bal.filter(a=>a.type==="Liability").map(a=>`<div>${a.code} — ${escapeHtml(a.name)} <span style="float:right">${accMoney(a.balance)}</span></div>`).join("")}<h2>Equity</h2>${bal.filter(a=>a.type==="Equity").map(a=>`<div>${a.code} — ${escapeHtml(a.name)} <span style="float:right">${accMoney(a.balance)}</span></div>`).join("")}<h2>Current Profit / (Loss): ${accMoney(profit)}</h2>`;
+  } else if(type==="trial"){
+    title="Trial Balance"; body=`<table><thead><tr><th>Code</th><th>Account</th><th>Type</th><th>Debit</th><th>Credit</th></tr></thead><tbody>${bal.map(a=>`<tr><td>${a.code}</td><td>${escapeHtml(a.name)}</td><td>${a.type}</td><td class="right">${accMoney(a.debit)}</td><td class="right">${accMoney(a.credit)}</td></tr>`).join("")}</tbody><tfoot><tr class="total"><td colspan="3">Totals</td><td class="right">${accMoney(bal.reduce((s,a)=>s+a.debit,0))}</td><td class="right">${accMoney(bal.reduce((s,a)=>s+a.credit,0))}</td></tr></tfoot></table>`;
+  } else if(type==="cashbank"){
+    title="Cash & Bank Flow"; body=`<div>Cash In: ${accMoney(flow.cashIn)}</div><div>Cash Out: ${accMoney(flow.cashOut)}</div><div class="total">Cash Net: ${accMoney(flow.cashNet)}</div><hr><div>Bank In: ${accMoney(flow.bankIn)}</div><div>Bank Out: ${accMoney(flow.bankOut)}</div><div class="total">Bank Net: ${accMoney(flow.bankNet)}</div>`;
+  } else if(type==="aging"){
+    title="Accounts Payable Aging"; body=`<table><thead><tr><th>Supplier</th><th>Outstanding</th><th>Age</th></tr></thead><tbody>${apBySupplier().map(x=>`<tr><td>${escapeHtml(x.supplier)}</td><td class="right">${accMoney(x.balance)}</td><td>Open balance</td></tr>`).join("")}</tbody></table><h2>Total AP: ${accMoney(ap)}</h2>`;
+  } else if(type==="supplier"){
+    title="Supplier Statements"; body=`<table><thead><tr><th>Supplier</th><th>Purchases</th><th>Payments</th><th>Balance</th></tr></thead><tbody>${apBySupplier().map(x=>`<tr><td>${escapeHtml(x.supplier)}</td><td class="right">${accMoney(x.purchases)}</td><td class="right">${accMoney(x.payments)}</td><td class="right">${accMoney(x.balance)}</td></tr>`).join("")}</tbody></table>`;
+  } else if(type==="purchase"||type==="grn"){
+    title=type==="purchase"?"Purchase Register":"GRN Register"; const rows=type==="purchase"?purchaseRecords().filter(x=>inRange(x.date)):grnRecords().filter(x=>inRange(x.date||x.receivedDate||x.createdAt));
+    body=`<table><thead><tr><th>Date</th><th>Reference</th><th>Supplier</th><th>Invoice</th><th>Amount</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${datePart(x.date||x.receivedDate||x.createdAt)}</td><td>${escapeHtml(x.reference||x.id||"")}</td><td>${escapeHtml(x.supplier||"")}</td><td>${escapeHtml(x.invoice||"")}</td><td class="right">${accMoney(x.amount||x.totalAmount)}</td></tr>`).join("")}</tbody></table>`;
+  } else if(type==="expense"){
+    title="Expense Register"; body=`<table><thead><tr><th>Date</th><th>Reference</th><th>Account</th><th>Description</th><th>Method</th><th>Amount</th></tr></thead><tbody>${expenses().filter(e=>inRange(e.date)).map(e=>`<tr><td>${datePart(e.date)}</td><td>${escapeHtml(e.reference)}</td><td>${escapeHtml(e.account)}</td><td>${escapeHtml(e.description)}</td><td>${escapeHtml(e.paymentMethod)}</td><td class="right">${accMoney(e.amount)}</td></tr>`).join("")}</tbody></table>`;
+  } else if(type==="inventory"){
+    title="Inventory Valuation"; body=`<h2>Inventory Asset Value: ${accMoney(inventoryValue())}</h2><p>Valuation is based on the inventory quantities/cost fields available in this edition.</p>`;
+  } else if(type==="ledger"){
+    title="General Ledger Audit"; body=`<table><thead><tr><th>Date</th><th>Reference</th><th>Account</th><th>Debit</th><th>Credit</th><th>Description</th></tr></thead><tbody>${ledgerLines().filter(x=>inRange(x.date)).map(x=>`<tr><td>${datePart(x.date)}</td><td>${escapeHtml(x.reference)}</td><td>${escapeHtml(x.account||x.accountCode||"")}</td><td class="right">${accMoney(x.debit)}</td><td class="right">${accMoney(x.credit)}</td><td>${escapeHtml(x.description)}</td></tr>`).join("")}</tbody></table>`;
+  } else {
+    title="Daily Revenue Report"; body=`<h2>Total Revenue: ${accMoney(rev)}</h2><div>Accommodation + Restaurant/POS based on current PMS records.</div>`;
+  }
+  reportShell(title,body);
+}
+function printSupplierStatement(name){
+  const x=apBySupplier().find(a=>a.supplier===name)||{supplier:name,purchases:0,payments:0,balance:0};
+  reportShell("Supplier Statement",`<h2>${escapeHtml(name)}</h2><div>Purchases: ${accMoney(x.purchases)}</div><div>Payments: ${accMoney(x.payments)}</div><h2>Balance Payable: ${accMoney(x.balance)}</h2>`);
+}
+window.renderAccounting=renderAccounting;
+window.accountingDateToday=accountingDateToday;
+window.openPurchaseOrderModal=openPurchaseOrderModal;
+window.savePurchaseOrder=savePurchaseOrder;
+window.openSupplierPaymentModal=openSupplierPaymentModal;
+window.saveSupplierPayment=saveSupplierPayment;
+window.openExpenseModal=openExpenseModal;
+window.saveExpenseEntry=saveExpenseEntry;
+window.printAccountingReport=printAccountingReport;
+window.printSupplierStatement=printSupplierStatement;
+
+/* Folio printing */
+window.printGuestFolio=function(reservationId){
+  const r=reservations.find(x=>x.id===reservationId); if(!r){alert("Folio not found.");return;}
+  const f=getFolio(reservationId)||{};
+  const pays=payments.filter(p=>p.reservationId===reservationId);
+  const total=getFolioTotal(reservationId), paid=getPaymentsTotal(reservationId), bal=Math.max(0,total-paid);
+  const guest=r.guestName||r.guest||"Guest";
+  const rows=[
+    ["Accommodation",Number(r.total||r.totalAmount||0)],
+    ["Restaurant",Number(f.restaurant||0)],
+    ["Extras",Number(f.extras||0)],
+    ["Service Charges",Number(f.serviceCharges||0)],
+    ["Taxes",Number(f.taxes||0)],
+    ["Discounts",-Number(f.discounts||0)]
+  ].filter(x=>x[1]!==0);
+  const payRows=pays.map(p=>`<tr><td>${datePart(p.date)}</td><td>${escapeHtml(p.reference||"")}</td><td>${escapeHtml(p.method||"")}</td><td class="right">${accMoney(p.amount)}</td></tr>`).join("");
+  reportShell("Guest Folio",`<h2>${escapeHtml(guest)}</h2><p>Booking: ${escapeHtml(r.bookingId||r.id||"")} &nbsp; Room: ${escapeHtml(r.roomNumber||r.room||"")} &nbsp; Check-in: ${escapeHtml(r.checkIn||"")} &nbsp; Check-out: ${escapeHtml(r.checkOut||"")}</p><table><thead><tr><th>Charge</th><th>Amount</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${escapeHtml(x[0])}</td><td class="right">${accMoney(x[1])}</td></tr>`).join("")}</tbody><tfoot><tr class="total"><td>Total</td><td class="right">${accMoney(total)}</td></tr><tr><td>Paid</td><td class="right">${accMoney(paid)}</td></tr><tr class="total"><td>Balance</td><td class="right">${accMoney(bal)}</td></tr></tfoot></table><h2>Payments</h2><table><thead><tr><th>Date</th><th>Reference</th><th>Method</th><th>Amount</th></tr></thead><tbody>${payRows||"<tr><td colspan='4'>No payments</td></tr>"}</tbody></table>`);
+};
+
+/* Add a print button to the folio modal dynamically, without changing existing folio rendering. */
+document.addEventListener("click",function(ev){
+  const btn=ev.target.closest?.('[onclick*="viewFolio("]');
+  if(btn){
+    setTimeout(function(){
+      const content=document.getElementById("folioModalContent");
+      if(!content || content.querySelector(".folio-print-extension")) return;
+      const onclick=btn.getAttribute("onclick")||"";
+      const m=onclick.match(/viewFolio\(['"]([^'"]+)['"]\)/);
+      if(!m) return;
+      content.insertAdjacentHTML("afterbegin",`<div class="folio-print-extension no-print" style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="btn btn-primary btn-small" onclick="printGuestFolio('${m[1]}')">Print Guest Folio</button></div>`);
+    },50);
+  }
+});
+})();
+
 </script>
 
+
+<!-- SIGNATURE PMS v1.6.6 CURRENCY / TAX / SERVICE CHARGE EXTENSION -->
+<script>
+(function(){
+"use strict";
+function n(v,d=0){const x=Number(v);return Number.isFinite(x)?x:d;}
+function prop(){return (typeof getProperty==='function'?getProperty():null)||{};}
+function cfg(){return (typeof settings!=='undefined'&&settings)?settings:{};}
+function base(){return String(cfg().baseCurrency||'LKR').toUpperCase();}
+function guest(){return String(cfg().guestCurrency||cfg().currency||'USD').toUpperCase();}
+function postRate(){return n(cfg().postingRate,320);}
+function settleRate(){return n(cfg().settlementRate,postRate());}
+function serviceRate(){return Math.max(0,n(cfg().serviceChargeRate,0));}
+function taxRate(){return Math.max(0,n(cfg().taxRate,0));}
+function accMoney(v){return base()+n(v).toFixed(2);}
+window.signatureCurrency={baseCurrency:base,guestCurrency:guest,postingRate:postRate,settlementRate:settleRate,toBase:(a,r)=>n(a)*n(r,postRate()),accountingMoney:accMoney};
+function shape(p){if(!p)return;p.baseCurrency=p.baseCurrency||'LKR';p.guestCurrency=p.guestCurrency||p.currency||'USD';p.postingRate=n(p.postingRate,320);p.settlementRate=n(p.settlementRate,p.postingRate);p.cashRate=n(p.cashRate,p.settlementRate);p.serviceChargeRate=Math.max(0,n(p.serviceChargeRate,0));p.taxRate=Math.max(0,n(p.taxRate,0));}
+try{if(typeof settings!=='undefined')shape(settings);if(typeof properties!=='undefined'&&Array.isArray(properties))properties.forEach(shape);}catch(e){}
+
+window.recalculateFolioTaxesAndService=function(id,opts){
+ const r=(typeof reservations!=='undefined'?reservations:[]).find(x=>x.id===id),f=typeof getFolio==='function'?getFolio(id):null;if(!r||!f)return null;
+ const p=prop(),sr=opts&&opts.serviceRate!=null?Math.max(0,n(opts.serviceRate)):Math.max(0,n(f.serviceChargeRate,p.serviceChargeRate||0)),tr=opts&&opts.taxRate!=null?Math.max(0,n(opts.taxRate)):Math.max(0,n(f.taxRate,p.taxRate||0));
+ const subtotal=Math.max(0,n(r.total)+n(f.restaurant)+n(f.extras)-n(f.discounts));
+ f.serviceChargeRate=sr;f.taxRate=tr;f.serviceCharges=Number((subtotal*sr/100).toFixed(2));f.taxes=Number(((subtotal+f.serviceCharges)*tr/100).toFixed(2));f.currency=f.currency||guest();f.baseCurrency=f.baseCurrency||base();f.postingRateAtCalculation=postRate();f.total=n(r.total)+n(f.restaurant)+n(f.extras)+n(f.serviceCharges)+n(f.taxes)-n(f.discounts);f.updatedAt=typeof localDateTime==='function'?localDateTime():new Date().toISOString();return f;
+};
+window.setFolioServiceCharge=function(id,rate){if(typeof requireRole==='function'&&!requireRole('Admin','Manager','Front Office','Cashier'))return;recalculateFolioTaxesAndService(id,{serviceRate:Math.max(0,n(rate))});if(typeof saveData==='function')saveData();if(typeof renderAll==='function')renderAll();if(typeof viewFolio==='function')viewFolio(id);};
+window.setFolioTax=function(id,rate){if(typeof requireRole==='function'&&!requireRole('Admin','Manager','Front Office','Cashier'))return;recalculateFolioTaxesAndService(id,{taxRate:Math.max(0,n(rate))});if(typeof saveData==='function')saveData();if(typeof renderAll==='function')renderAll();if(typeof viewFolio==='function')viewFolio(id);};
+window.removeFolioServiceCharge=function(id){setFolioServiceCharge(id,0);};window.removeFolioTax=function(id){setFolioTax(id,0);};
+
+function addSettings(){const page=document.getElementById('settings');if(!page||document.getElementById('currencyAccountingSettings'))return;const anchor=page.querySelector('#ratePlanSection')||null;const sec=document.createElement('div');sec.className='section';sec.id='currencyAccountingSettings';sec.innerHTML='<div class="section-header"><div><h3>Currency &amp; Hotel Accounting</h3><div style="font-size:12px;color:#6b7280;margin-top:4px">Guest rates may be foreign currency. Purchasing, expenses and financial statements use LKR.</div></div><span class="badge badge-success">LKR ACCOUNTING</span></div><div class="form-grid"><div class="form-group"><label>Accounting / Base Currency</label><input id="sigBaseCurrency" maxlength="3" value="LKR"></div><div class="form-group"><label>Guest / Selling Currency</label><input id="sigGuestCurrency" maxlength="3" value="USD"></div><div class="form-group"><label>Posting Rate — 1 Foreign Currency</label><input id="sigPostingRate" type="number" min="0" step="0.0001" value="320"></div><div class="form-group"><label>Settlement Rate — 1 Foreign Currency</label><input id="sigSettlementRate" type="number" min="0" step="0.0001" value="320"></div><div class="form-group"><label>Cash Rate — 1 Foreign Currency</label><input id="sigCashRate" type="number" min="0" step="0.0001" value="320"></div><div class="form-group"><label>Default Service Charge %</label><input id="sigServiceChargeRate" type="number" min="0" step="0.01" value="0"></div><div class="form-group"><label>Default Tax %</label><input id="sigTaxRate" type="number" min="0" step="0.01" value="0"></div><div class="form-group full"><div style="font-size:12px;color:#475569;background:#f8faf9;border:1px solid #d1d5db;border-radius:8px;padding:10px"><strong>Rule:</strong> Guest folios keep the guest currency and rate used. GRNs, expenses, supplier AP, cash/bank, P&amp;L and Balance Sheet are LKR.</div></div></div><button class="btn btn-primary" onclick="saveSignatureCurrencySettings()" style="margin-top:12px">Save Currency &amp; Charge Settings</button>';page.insertBefore(sec,anchor);loadSettingsPanel();}
+function loadSettingsPanel(){const s=cfg(),v={sigBaseCurrency:s.baseCurrency||'LKR',sigGuestCurrency:s.guestCurrency||s.currency||'USD',sigPostingRate:s.postingRate||320,sigSettlementRate:s.settlementRate||s.postingRate||320,sigCashRate:s.cashRate||s.settlementRate||320,sigServiceChargeRate:s.serviceChargeRate||0,sigTaxRate:s.taxRate||0};Object.entries(v).forEach(([id,x])=>{const e=document.getElementById(id);if(e)e.value=x;});}
+window.saveSignatureCurrencySettings=function(){if(typeof requireRole==='function'&&!requireRole('Admin','Manager'))return;if(typeof settings==='undefined'||!settings){alert('Please select a property first.');return;}const v=id=>document.getElementById(id)?.value;const b=String(v('sigBaseCurrency')||'LKR').trim().toUpperCase()||'LKR',g=String(v('sigGuestCurrency')||'USD').trim().toUpperCase()||'USD',pr=Math.max(0,n(v('sigPostingRate'),320)),sr=Math.max(0,n(v('sigSettlementRate'),pr)),cr=Math.max(0,n(v('sigCashRate'),sr)),sc=Math.max(0,n(v('sigServiceChargeRate'),0)),tx=Math.max(0,n(v('sigTaxRate'),0));Object.assign(settings,{baseCurrency:b,guestCurrency:g,currency:g,postingRate:pr,settlementRate:sr,cashRate:cr,serviceChargeRate:sc,taxRate:tx});if(typeof properties!=='undefined'){const p=properties.find(x=>x.id===currentPropertyId);if(p)Object.assign(p,{baseCurrency:b,guestCurrency:g,currency:g,postingRate:pr,settlementRate:sr,cashRate:cr,serviceChargeRate:sc,taxRate:tx});}if(typeof saveData==='function')saveData();loadSettingsPanel();if(typeof renderAll==='function')renderAll();alert('Currency and charge settings saved. Historical transaction rates are not changed.');};
+
+function folioControls(){const host=document.getElementById('folioModalContent');if(!host||host.querySelector('#folioChargeControls'))return;let rid='';const buttons=host.querySelectorAll('[onclick]');for(const b of buttons){const x=String(b.getAttribute('onclick')||'');let m=x.match(/(?:addManualFolioCharge|openPaymentModal|checkInReservation|checkOutReservation)\(\'([^\']+)\'\)/);if(m){rid=m[1];break;}}if(!rid)return;const f=typeof getFolio==='function'?getFolio(rid):null;if(!f)return;const p=prop(),sr=f.serviceChargeRate!=null?f.serviceChargeRate:(p.serviceChargeRate||0),tr=f.taxRate!=null?f.taxRate:(p.taxRate||0);const d=document.createElement('div');d.id='folioChargeControls';d.className='section';d.style.cssText='padding:12px;margin-top:16px;border:1px solid #d1d5db';d.innerHTML='<div class="section-header"><div><h3>Service Charge &amp; Tax</h3><div style="font-size:12px;color:#6b7280">Service charge is calculated first; tax is calculated on subtotal plus service charge.</div></div></div><div class="form-grid"><div class="form-group"><label>Service Charge %</label><input id="folioServiceRate" type="number" min="0" step="0.01" value="'+sr+'"></div><div class="form-group"><label>Tax %</label><input id="folioTaxRate" type="number" min="0" step="0.01" value="'+tr+'"></div></div><div class="toolbar" style="margin-top:8px"><button class="btn btn-success btn-small" onclick="setFolioServiceCharge(\''+rid+'\',document.getElementById(\'folioServiceRate\').value)">Apply Service Charge</button><button class="btn btn-success btn-small" onclick="setFolioTax(\''+rid+'\',document.getElementById(\'folioTaxRate\').value)">Apply Tax</button><button class="btn btn-secondary btn-small" onclick="setFolioServiceCharge(\''+rid+'\',document.getElementById(\'folioServiceRate\').value);setFolioTax(\''+rid+'\',document.getElementById(\'folioTaxRate\').value)">Apply Both</button><button class="btn btn-danger btn-small" onclick="removeFolioServiceCharge(\''+rid+'\');removeFolioTax(\''+rid+'\')">Clear Both</button></div>';host.appendChild(d);}
+const observer=new MutationObserver(()=>{try{folioControls();}catch(e){}});function boot(){addSettings();try{if(typeof folios!=='undefined')folios.forEach(f=>{const p=prop();f.currency=f.currency||p.guestCurrency||p.currency||'USD';f.baseCurrency=f.baseCurrency||p.baseCurrency||'LKR';if(f.serviceChargeRate==null)f.serviceChargeRate=n(p.serviceChargeRate,0);if(f.taxRate==null)f.taxRate=n(p.taxRate,0);});}catch(e){}const h=document.getElementById('folioModalContent');if(h)observer.observe(h,{childList:true,subtree:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
+</script>
 
 </body></html>
